@@ -1,0 +1,18 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: bratucornel
+ * Date: 2019-02-19
+ * Time: 08:02
+ */
+
+namespace Retargeting;
+
+/**
+ * Class Category
+ * @package Retargeting
+ */
+class Category extends AbstractRetargetingSDK
+{
+
+}
