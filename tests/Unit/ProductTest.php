@@ -7,11 +7,11 @@
  */
 
 namespace Retargeting;
-
-
 use PHPUnit\Framework\TestCase;
 
 /**
+ * Class ProductTest
+ * @package Retargeting
  * @property Product product
  */
 class ProductTest extends TestCase

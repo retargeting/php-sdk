@@ -21,4 +21,13 @@ abstract class AbstractRetargetingSDK
         return json_encode($data, JSON_PRETTY_PRINT);
     }
 
+    /**
+     * @param array $breadCrumb
+     * @return array
+     */
+    public function prepareBreadCrumb(array $breadCrumb): array
+    {
+        return empty($breadCrumb) ? [] : ['id', 'name','parent'];
+    }
+
 }

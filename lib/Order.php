@@ -8,6 +8,10 @@
 
 namespace Retargeting;
 
+/**
+ * Class Order
+ * @package Retargeting
+ */
 class Order
 {
 

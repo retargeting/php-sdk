@@ -8,8 +8,38 @@
 
 namespace Retargeting;
 
-
-class Checkout
+/**
+ * Class Checkout
+ * @package Retargeting
+ */
+class Checkout extends AbstractRetargetingSDK
 {
+    /**
+     * @var array
+     */
+    protected $ids = [];
+
+    /**
+     * @return array
+     */
+    public function getIds(): array
+    {
+        return $this->ids;
+    }
+
+    /**
+     * @param array $ids
+     */
+    public function setIds(array $ids)
+    {
+        $this->ids = $ids;
+    }
+
+    /**
+     * @return array
+     */
+    public function prepareCheckoutIdsArray() {
+        return $this->getIds();
+    }
 
 }

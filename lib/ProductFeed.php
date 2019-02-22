@@ -8,8 +8,11 @@
 
 namespace Retargeting;
 
-
-class ProductFeed
+/**
+ * Class ProductFeed
+ * @package Retargeting
+ */
+class ProductFeed extends AbstractRetargetingSDK
 {
-
+    /*@TODO: implementat*/
 }

@@ -8,6 +8,10 @@
 
 namespace Retargeting;
 
+/**
+ * Class Product
+ * @package Retargeting
+ */
 class Product extends AbstractRetargetingSDK
 {
 

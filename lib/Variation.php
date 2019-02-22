@@ -8,7 +8,10 @@
 
 namespace Retargeting;
 
-
+/**
+ * Class Variation
+ * @package Retargeting
+ */
 class Variation
 {
 
