@@ -12,7 +12,7 @@ namespace Retargeting;
  * Class Variation
  * @package Retargeting
  */
-class Variation
+class Variation extends AbstractRetargetingSDK
 {
 
 }

@@ -14,5 +14,25 @@ namespace Retargeting;
  */
 class ProductFeed extends AbstractRetargetingSDK
 {
-    /*@TODO: implementat*/
+    /**
+     * @var array
+     */
+    protected $items = [];
+
+    /**
+     * @return array
+     */
+    public function getItems(): array
+    {
+        return $this->items;
+    }
+
+    /**
+     * @param array $items
+     */
+    public function setItems(array $items)
+    {
+        $this->items = $items;
+    }
+
 }
