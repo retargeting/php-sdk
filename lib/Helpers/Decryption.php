@@ -78,16 +78,19 @@ class Decryption
         $result = preg_match('/(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d)Z(.*)/',
             $nonce,
             $matches);
+
         if ($result != 1 || count($matches) != 8) {
             return false;
         }
 
-        $stamp = gmmktime($matches[4],
+        $stamp = gmmktime(
+            $matches[4],
             $matches[5],
             $matches[6],
             $matches[2],
             $matches[3],
-            $matches[1]);
+            $matches[1]
+        );
 
         $time = time();
         if ($stamp < ($time - $clockSkew)
