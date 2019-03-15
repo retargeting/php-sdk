@@ -8,8 +8,30 @@
 
 namespace Retargeting;
 
-
-class Checkout
+class Checkout extends AbstractRetargetingSDK
 {
+    protected $productIds = [];
 
+    /**
+     * @return array
+     */
+    public function getProductIds(): array
+    {
+        return $this->productIds;
+    }
+
+    /**
+     * @param array $productIds
+     */
+    public function setProductIds(array $productIds)
+    {
+        $this->productIds = $productIds;
+    }
+
+    public function prepareCheckoutIds()
+    {
+        return $this->toJSON([
+            'product_id' => $this->getProductIds()
+        ]);
+    }
 }

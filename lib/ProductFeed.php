@@ -11,5 +11,21 @@ namespace Retargeting;
 
 class ProductFeed
 {
+    protected $productFeed = [];
 
+    /**
+     * @return array
+     */
+    public function getProductFeed(): array
+    {
+        return $this->productFeed;
+    }
+
+    /**
+     * @param array $productFeed
+     */
+    public function setProductFeed(array $productFeed)
+    {
+        $this->productFeed = $productFeed;
+    }
 }

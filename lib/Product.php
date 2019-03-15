@@ -7,45 +7,19 @@
  */
 namespace Retargeting;
 
+use Retargeting\Validations\UrlValidator;
+
 class Product extends AbstractRetargetingSDK
 {
-    protected $id;
+    protected $id = '';
     protected $name;
-    protected $url;
+    protected $url = '';
     protected $img;
     protected $price;
     protected $promo = 0;
-    protected $brand = null;
+    protected $brand = [];
     protected $category = [];
     protected $inventory = [];
-    protected $additionalImages = [];
-
-    /**
-     * Product constructor.
-     * @param $id
-     * @param $name
-     * @param $url
-     * @param $img
-     * @param $price
-     * @param $promo
-     * @param $brand
-     * @param $category
-     * @param $inventory
-     * @param $additionalImages
-     */
-    public function __construct($id, $name, $url, $img, $price, $promo, $brand, $category, $inventory, $additionalImages)
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->url = $url;
-        $this->img = $img;
-        $this->price = $price;
-        $this->promo = $promo;
-        $this->brand = $brand;
-        $this->category = $category;
-        $this->inventory = $inventory;
-        $this->additionalImages = $additionalImages;
-    }
 
     /**
      * @return mixed
@@ -57,12 +31,10 @@ class Product extends AbstractRetargetingSDK
 
     /**
      * @param mixed $id
-     * @return Product
      */
     public function setId($id)
     {
         $this->id = $id;
-        return $this;
     }
 
     /**
@@ -75,12 +47,10 @@ class Product extends AbstractRetargetingSDK
 
     /**
      * @param mixed $name
-     * @return Product
      */
     public function setName($name)
     {
         $this->name = $name;
-        return $this;
     }
 
     /**
@@ -93,12 +63,13 @@ class Product extends AbstractRetargetingSDK
 
     /**
      * @param mixed $url
-     * @return Product
      */
     public function setUrl($url)
     {
-        $this->url = $url;
-        return $this;
+        if(UrlValidator::validate($url))
+        {
+            $this->url = $url;
+        }
     }
 
     /**
@@ -111,12 +82,10 @@ class Product extends AbstractRetargetingSDK
 
     /**
      * @param mixed $img
-     * @return Product
      */
     public function setImg($img)
     {
         $this->img = $img;
-        return $this;
     }
 
     /**
@@ -129,12 +98,10 @@ class Product extends AbstractRetargetingSDK
 
     /**
      * @param mixed $price
-     * @return Product
      */
     public function setPrice($price)
     {
         $this->price = $price;
-        return $this;
     }
 
     /**
@@ -147,30 +114,26 @@ class Product extends AbstractRetargetingSDK
 
     /**
      * @param int $promo
-     * @return Product
      */
-    public function setPromo(int $promo): Product
+    public function setPromo(int $promo)
     {
         $this->promo = $promo;
-        return $this;
     }
 
     /**
-     * @return null
+     * @return array
      */
-    public function getBrand()
+    public function getBrand(): array
     {
         return $this->brand;
     }
 
     /**
-     * @param null $brand
-     * @return Product
+     * @param array $brand
      */
-    public function setBrand($brand)
+    public function setBrand(array $brand)
     {
         $this->brand = $brand;
-        return $this;
     }
 
     /**
@@ -183,12 +146,10 @@ class Product extends AbstractRetargetingSDK
 
     /**
      * @param array $category
-     * @return Product
      */
-    public function setCategory(array $category): Product
+    public function setCategory(array $category)
     {
         $this->category = $category;
-        return $this;
     }
 
     /**
@@ -201,30 +162,10 @@ class Product extends AbstractRetargetingSDK
 
     /**
      * @param array $inventory
-     * @return Product
      */
-    public function setInventory(array $inventory): Product
+    public function setInventory(array $inventory)
     {
         $this->inventory = $inventory;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getAdditionalImages(): array
-    {
-        return $this->additionalImages;
-    }
-
-    /**
-     * @param array $additionalImages
-     * @return Product
-     */
-    public function setAdditionalImages(array $additionalImages): Product
-    {
-        $this->additionalImages = $additionalImages;
-        return $this;
     }
 
     /**
@@ -241,8 +182,7 @@ class Product extends AbstractRetargetingSDK
             'promo'     => $this->getPromo(),
             'brand'     => $this->getBrand(),
             'category'  => $this->getCategory(),
-            'inventory' => $this->getInventory(),
-            'additionalImages' => $this->getAdditionalImages()
+            'inventory' => $this->getInventory()
         ]);
     }
 }
