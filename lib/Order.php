@@ -8,20 +8,22 @@
 
 namespace Retargeting;
 
+use Retargeting\Validators\Email\EmailValidator;
+
 class Order extends AbstractRetargetingSDK
 {
-    protected $orderNo;
-    protected $lastName;
-    protected $firstName;
-    protected $email;
-    protected $phone;
-    protected $state;
-    protected $city;
-    protected $address;
-    protected $discount;
-    protected $discountCode;
-    protected $shipping;
-    protected $total;
+    protected $orderNo = 0;
+    protected $lastName = '';
+    protected $firstName = '';
+    protected $email = '';
+    protected $phone = 0;
+    protected $state = '';
+    protected $city = '';
+    protected $address = '';
+    protected $discount = '';
+    protected $discountCode = '0';
+    protected $shipping = '';
+    protected $total = 0;
 
     /**
      * @return mixed
@@ -215,21 +217,38 @@ class Order extends AbstractRetargetingSDK
         $this->total = $total;
     }
 
+    /**
+     * Prepare order information
+     * @return string
+     */
     public function prepareOrderInformation()
     {
+        $orderNo = $this->formatIntFloatString($this->getOrderNo());
+        $lastName = $this->getProperFormattedString($this->getLastName());
+        $firstName = $this->getProperFormattedString($this->getFirstName());
+        $email = EmailValidator::sanitize($this->getEmail(), 'email');
+        $phone = $this->getProperFormattedString($this->getPhone());
+        $state = $this->getProperFormattedString($this->getState());
+        $city = $this->getProperFormattedString($this->getCity());
+        $address = $this->getProperFormattedString($this->getAddress());
+        $discount = $this->formatIntFloatString($this->getDiscount());
+        $discountCode = $this->formatIntFloatString($this->getDiscountCode());
+        $shipping = $this->formatIntFloatString($this->getShipping());
+        $total = $this->formatIntFloatString($this->getTotal());
+
         return $this->toJSON([
-            'order_no'  => $this->getOrderNo(),
-            'lastname'  => $this->getLastName(),
-            'firstname' => $this->getFirstName(),
-            'email'     => $this->getEmail(),
-            'phone'     => $this->getPhone(),
-            'state'     => $this->getState(),
-            'city'      => $this->getCity(),
-            'address'   => $this->getAddress(),
-            'discount'  => $this->getDiscount(),
-            'discount_code' => $this->getDiscountCode(),
-            'shipping'  => $this->getShipping(),
-            'total'     => $this->getTotal()
+            'order_no'  => $orderNo,
+            'lastname'  => $lastName,
+            'firstname' => $firstName,
+            'email'     => $email,
+            'phone'     => $phone,
+            'state'     => $state,
+            'city'      => $city,
+            'address'   => $address,
+            'discount'  => $discount,
+            'discount_code' => $discountCode,
+            'shipping'  => $shipping,
+            'total'     => $total
         ]);
     }
 }

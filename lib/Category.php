@@ -14,8 +14,8 @@ namespace Retargeting;
  */
 class Category extends AbstractRetargetingSDK
 {
-    protected $id;
-    protected $name;
+    protected $id = 0;
+    protected $name = '';
     protected $parent = 0;
     protected $breadcrumb = [];
 
@@ -84,14 +84,20 @@ class Category extends AbstractRetargetingSDK
     }
 
     /**
+     * Prepare category data
      * @return string
      */
     public function prepareCategoryData()
     {
+        $id = $this->getProperFormattedString($this->getId());
+        $name = $this->getProperFormattedString($this->getName());
+
+        $parent = is_bool($this->getParent()) && !$this->getParent() ? false : $this->getParent();
+
         return $this->toJSON([
-            'id'            => $this->getId(),
-            'name'          => $this->getName(),
-            'parent'        => $this->getParent(),
+            'id'            => $id,
+            'name'          => $name,
+            'parent'        => $parent,
             'breadcrumb'    => $this->getBreadcrumb()
         ]);
     }

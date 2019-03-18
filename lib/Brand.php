@@ -49,7 +49,7 @@ class Brand extends AbstractRetargetingSDK
     {
         return $this->toJSON([
             'id' => $this->getId(),
-            'name' => $this->getName()
+            'name' => $this->getProperFormattedString($this->getName())
         ]);
     }
 }

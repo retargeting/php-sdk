@@ -8,9 +8,11 @@
 
 namespace Retargeting;
 
+use Retargeting\Validators\Email\EmailValidator;
+
 class Email extends AbstractRetargetingSDK
 {
-    protected $email;
+    protected $email = '';
     protected $name = '';
     protected $phone = '';
     protected $city = '';
@@ -96,14 +98,25 @@ class Email extends AbstractRetargetingSDK
         $this->sex = $sex;
     }
 
+    /**
+     * Prepare email data
+     * @return string
+     */
     public function prepareEmailData()
     {
+        $email = EmailValidator::validate($this->getEmail());
+        $name = $this->getProperFormattedString($this->getName());
+        $phone = $this->formatIntFloatString($this->getPhone());
+        $city = $this->getProperFormattedString($this->getCity());
+
+        $sex = is_numeric($this->getSex()) ? $this->getSex() : (int)$this->getSex();
+
         return $this->toJSON([
-            'email' => $this->getEmail(),
-            'name'  => $this->getName(),
-            'phone' => $this->getPhone(),
-            'city'  => $this->getCity(),
-            'sex'   => $this->getSex()
+            'email' => $email,
+            'name'  => $name,
+            'phone' => $phone,
+            'city'  => $city,
+            'sex'   => $sex
         ]);
     }
 }

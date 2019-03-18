@@ -8,10 +8,11 @@
 
 namespace Retargeting;
 
+use Retargeting\Validators\Variation\CodeValidator;
 
 class Variation extends AbstractRetargetingSDK
 {
-    protected $code;
+    protected $code = '';
     protected $stock = 0;
     protected $details = [];
 
@@ -63,11 +64,18 @@ class Variation extends AbstractRetargetingSDK
         $this->details = $details;
     }
 
+    /**
+     * Prepare variation data
+     * @return string
+     */
     public function prepareVariationInfo()
     {
+        $code = CodeValidator::validate($this->getCode());
+        $stock = (bool)$this->getStock();
+
         return $this->toJSON([
-            'code' => $this->getCode(),
-            'stock' => $this->getStock(),
+            'code' => $code,
+            'stock' => $stock,
             'details' => $this->getDetails()
         ]);
     }

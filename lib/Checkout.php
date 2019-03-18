@@ -28,10 +28,16 @@ class Checkout extends AbstractRetargetingSDK
         $this->productIds = $productIds;
     }
 
+    /**
+     * Prepare checkout ids
+     * @return string
+     */
     public function prepareCheckoutIds()
     {
-        return $this->toJSON([
-            'product_id' => $this->getProductIds()
-        ]);
+        $productIds = is_array($this->getProductIds()) ? $this->getProductIds() : (array)$this->getProductIds();
+
+        return $this->toJSON(
+            $productIds
+        );
     }
 }

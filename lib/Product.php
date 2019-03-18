@@ -7,15 +7,18 @@
  */
 namespace Retargeting;
 
-use Retargeting\Validations\UrlValidator;
+use Retargeting\Validators\Product\BrandValidator;
+use Retargeting\Validators\Product\CategoryValidator;
+use Retargeting\Validators\Product\UrlValidator;
+use Retargeting\Validators\Product\VariationsValidator;
 
 class Product extends AbstractRetargetingSDK
 {
-    protected $id = '';
-    protected $name;
+    protected $id = 0;
+    protected $name = '';
     protected $url = '';
-    protected $img;
-    protected $price;
+    protected $img = '';
+    protected $price = '';
     protected $promo = 0;
     protected $brand = [];
     protected $category = [];
@@ -62,14 +65,12 @@ class Product extends AbstractRetargetingSDK
     }
 
     /**
-     * @param mixed $url
+     * @param $url
+     * @return array|bool|mixed
      */
     public function setUrl($url)
     {
-        if(UrlValidator::validate($url))
-        {
-            $this->url = $url;
-        }
+        $this->url = $url;
     }
 
     /**
@@ -169,20 +170,40 @@ class Product extends AbstractRetargetingSDK
     }
 
     /**
+     * Prepare product information
      * @return string
      */
     public function prepareProductInformation()
     {
+        $id     = $this->formatIntFloatString($this->getId());
+        $name   = $this->getProperFormattedString($this->getName());
+        $url    = UrlValidator::validate($this->getUrl());
+
+        $price  = $this->formatIntFloatString($this->getPrice());
+
+        if($this->getPromo() > 0)
+        {
+            $promo = $this->formatIntFloatString($this->getPromo());
+        }
+        else
+        {
+            $promo = 0;
+        }
+
+        $brand      = BrandValidator::validate($this->getBrand());
+        $category   = CategoryValidator::validate($this->getCategory());
+        $inventory  = VariationsValidator::validate($this->getInventory());
+
         return $this->toJSON([
-            'id'        => $this->getId(),
-            'name'      => $this->getName(),
-            'url'       => $this->getUrl(),
+            'id'        => $id,
+            'name'      => $name,
+            'url'       => $url,
             'img'       => $this->getImg(),
-            'price'     => $this->getPrice(),
-            'promo'     => $this->getPromo(),
-            'brand'     => $this->getBrand(),
-            'category'  => $this->getCategory(),
-            'inventory' => $this->getInventory()
+            'price'     => $price,
+            'promo'     => $promo,
+            'brand'     => $brand,
+            'category'  => $category,
+            'inventory' => $inventory
         ]);
     }
 }

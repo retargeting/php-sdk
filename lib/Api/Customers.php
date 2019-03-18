@@ -14,5 +14,8 @@ namespace Retargeting\Api;
  */
 class Customers
 {
-
+    public function __construct()
+    {
+        $var = new Client();
+    }
 }

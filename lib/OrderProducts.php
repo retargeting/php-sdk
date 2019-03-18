@@ -11,10 +11,10 @@ namespace Retargeting;
 
 class OrderProducts extends AbstractRetargetingSDK
 {
-    protected $id;
-    protected $quantity = false;
-    protected $price;
-    protected $variationCode;
+    protected $id = '';
+    protected $quantity = 0;
+    protected $price = 0;
+    protected $variationCode = '';
 
     /**
      * @return mixed
@@ -80,13 +80,17 @@ class OrderProducts extends AbstractRetargetingSDK
         $this->variationCode = $variationCode;
     }
 
+    /**
+     * Prepare order products for save order
+     * @return string
+     */
     public function prepareOrderProductsInfo()
     {
         return $this->toJSON([
-            'id' => $this->getId(),
-            'quantity' => $this->getQuantity(),
-            'price' => $this->getPrice(),
-            'variation_code' => $this->getVariationCode()
+            'id' => $this->formatIntFloatString($this->getId()),
+            'quantity' => $this->formatIntFloatString($this->getQuantity()),
+            'price' => $this->formatIntFloatString($this->getPrice()),
+            'variation_code' => $this->getProperFormattedString($this->getVariationCode())
         ]);
     }
 }

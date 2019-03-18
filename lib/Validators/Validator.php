@@ -6,7 +6,7 @@
  * Time: 11:44
  */
 
-namespace Retargeting\Validations;
+namespace Retargeting\Validators;
 
 
 interface Validator

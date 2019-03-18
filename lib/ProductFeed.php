@@ -8,8 +8,9 @@
 
 namespace Retargeting;
 
+use Retargeting\Validators\ProductFeed\ProductFeedValidator;
 
-class ProductFeed
+class ProductFeed extends AbstractRetargetingSDK
 {
     protected $productFeed = [];
 
@@ -27,5 +28,14 @@ class ProductFeed
     public function setProductFeed(array $productFeed)
     {
         $this->productFeed = $productFeed;
+    }
+
+    /**
+     * Prepare product feed JSON
+     * @return array|mixed
+     */
+    public function prepareProductFeed()
+    {
+        return ProductFeedValidator::validate($this->getProductFeed());
     }
 }

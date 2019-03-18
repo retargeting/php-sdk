@@ -45,6 +45,12 @@ class Decryption
         return $data;
     }
 
+    /**
+     * @param $data
+     * @param $key
+     * @param $method
+     * @return bool|string
+     */
     private function tokenDecrypt($data, $key, $method)
     {
         $data = base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));

@@ -7,10 +7,12 @@
  */
 namespace Retargeting;
 
+use Retargeting\Validators\AbstractValidator;
+
 /**
  * Class AbstractRetargetingSDK
  */
-abstract class AbstractRetargetingSDK
+abstract class AbstractRetargetingSDK extends AbstractValidator
 {
     /**
      * @param array $data
@@ -35,6 +37,29 @@ abstract class AbstractRetargetingSDK
                 'UTF-8')));
         } else {
             return '';
+        }
+    }
+
+    /**
+     * Parse correct format of given data
+     * @param $value
+     * @return float|int|string
+     */
+    public function formatIntFloatString($value)
+    {
+        $value = strip_tags(trim($value));
+
+        if(is_numeric($value) && !is_float($value))
+        {
+            return (int)$value;
+        }
+        else if(is_numeric($value) && is_float($value))
+        {
+            return (float)$value;
+        }
+        else
+        {
+            return $this->getProperFormattedString($value);
         }
     }
 }
