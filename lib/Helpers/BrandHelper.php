@@ -6,12 +6,9 @@
  * Time: 11:57
  */
 
-namespace Retargeting\Validators\Product;
+namespace Retargeting\Helpers;
 
-use Retargeting\Validators\AbstractValidator;
-use Retargeting\Validators\Validator;
-
-class BrandValidator extends AbstractValidator implements Validator
+class BrandHelper extends AbstractHelper implements Helper
 {
     /**
      * Format brand object

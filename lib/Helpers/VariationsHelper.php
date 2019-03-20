@@ -6,12 +6,9 @@
  * Time: 12:46
  */
 
-namespace Retargeting\Validators\Product;
+namespace Retargeting\Helpers;
 
-use Retargeting\Validators\AbstractValidator;
-use Retargeting\Validators\Validator;
-
-class VariationsValidator extends AbstractValidator implements Validator
+class VariationsHelper extends AbstractHelper implements Helper
 {
     /**
      * Format variations object

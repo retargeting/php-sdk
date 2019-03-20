@@ -8,7 +8,6 @@
 
 namespace Retargeting;
 
-
 class OrderProducts extends AbstractRetargetingSDK
 {
     protected $id = '';

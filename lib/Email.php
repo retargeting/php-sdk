@@ -8,11 +8,11 @@
 
 namespace Retargeting;
 
-use Retargeting\Validators\Email\EmailValidator;
+use Retargeting\Helpers\EmailHelper;
 
 class Email extends AbstractRetargetingSDK
 {
-    protected $email = '';
+    protected $email;
     protected $name = '';
     protected $phone = '';
     protected $city = '';
@@ -104,7 +104,7 @@ class Email extends AbstractRetargetingSDK
      */
     public function prepareEmailData()
     {
-        $email = EmailValidator::validate($this->getEmail());
+        $email = EmailHelper::validate($this->getEmail());
         $name = $this->getProperFormattedString($this->getName());
         $phone = $this->formatIntFloatString($this->getPhone());
         $city = $this->getProperFormattedString($this->getCity());

@@ -8,7 +8,7 @@
 
 namespace Retargeting;
 
-use Retargeting\Validators\Variation\CodeValidator;
+use Retargeting\Helpers\CodeHelper;
 
 class Variation extends AbstractRetargetingSDK
 {
@@ -70,7 +70,7 @@ class Variation extends AbstractRetargetingSDK
      */
     public function prepareVariationInfo()
     {
-        $code = CodeValidator::validate($this->getCode());
+        $code = CodeHelper::validate($this->getCode());
         $stock = (bool)$this->getStock();
 
         return $this->toJSON([

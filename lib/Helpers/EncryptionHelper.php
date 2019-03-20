@@ -12,25 +12,19 @@ namespace Retargeting\Helpers;
  * Class Encryption
  * @package Retargeting\Helpers
  */
-class Encryption
+class EncryptionHelper
 {
-    const TOKEN = "df2ce5cba06265db9bffeb6caf8d9fcf46a5a1712f774bca67535a82bdcf1955";
-
     const METHOD = "AES-256-CBC";
-    const HASH_ALGORITHM = 'sha512';
 
-    private $customer;
-    private $token;
+    public static $token;
 
     /**
      * Encryption constructor.
-     * @param $customer
      * @param $token
      */
-    public function __construct($customer, $token)
+    public function __construct($token)
     {
-        $this->customer = $customer;
-        $this->token    = $token;
+        self::$token    = $token;
     }
 
     /**
@@ -53,15 +47,7 @@ class Encryption
      */
     private static function createKey()
     {
-        return hash('sha512', self::TOKEN);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function decodeCustomer()
-    {
-        return json_decode($this->customer);
+        return hash('sha512', self::$token);
     }
 
     /**

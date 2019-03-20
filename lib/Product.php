@@ -7,10 +7,10 @@
  */
 namespace Retargeting;
 
-use Retargeting\Validators\Product\BrandValidator;
-use Retargeting\Validators\Product\CategoryValidator;
-use Retargeting\Validators\Product\UrlValidator;
-use Retargeting\Validators\Product\VariationsValidator;
+use Retargeting\Helpers\BrandHelper;
+use Retargeting\Helpers\CategoryHelper;
+use Retargeting\Helpers\UrlHelper;
+use Retargeting\Helpers\VariationsHelper;
 
 class Product extends AbstractRetargetingSDK
 {
@@ -177,7 +177,7 @@ class Product extends AbstractRetargetingSDK
     {
         $id     = $this->formatIntFloatString($this->getId());
         $name   = $this->getProperFormattedString($this->getName());
-        $url    = UrlValidator::validate($this->getUrl());
+        $url    = UrlHelper::validate($this->getUrl());
 
         $price  = $this->formatIntFloatString($this->getPrice());
 
@@ -190,9 +190,9 @@ class Product extends AbstractRetargetingSDK
             $promo = 0;
         }
 
-        $brand      = BrandValidator::validate($this->getBrand());
-        $category   = CategoryValidator::validate($this->getCategory());
-        $inventory  = VariationsValidator::validate($this->getInventory());
+        $brand      = BrandHelper::validate($this->getBrand());
+        $category   = CategoryHelper::validate($this->getCategory());
+        $inventory  = VariationsHelper::validate($this->getInventory());
 
         return $this->toJSON([
             'id'        => $id,

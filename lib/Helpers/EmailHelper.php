@@ -6,12 +6,9 @@
  * Time: 14:43
  */
 
-namespace Retargeting\Validators\Email;
+namespace Retargeting\Helpers;
 
-use Retargeting\Validators\AbstractValidator;
-use Retargeting\Validators\Validator;
-
-class EmailValidator extends AbstractValidator implements Validator
+class EmailHelper extends AbstractHelper implements Helper
 {
     /**
      * Format email properly

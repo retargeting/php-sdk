@@ -14,18 +14,20 @@ use Retargeting\Exceptions\DecryptException;
  * Class Decryption
  * @package Retargeting\Helpers
  */
-class Decryption
+class DecryptionHelper
 {
-
-    const TOKEN = "df2ce5cba06265db9bffeb6caf8d9fcf46a5a1712f774bca67535a82bdcf1955";
     const METHOD = "AES-256-CBC";
     const HASH_ALGORITHM = 'sha512';
 
     private $hash;
 
-    public function __construct()
+    /**
+     * DecryptionHelper constructor.
+     * @param $token
+     */
+    public function __construct($token)
     {
-        $this->hash = hash(self::HASH_ALGORITHM, self::TOKEN);
+        $this->hash = hash(self::HASH_ALGORITHM, $token);
     }
 
     /**

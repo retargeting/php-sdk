@@ -6,12 +6,9 @@
  * Time: 17:56
  */
 
-namespace Retargeting\Validators\ProductFeed;
+namespace Retargeting\Helpers;
 
-use Retargeting\AbstractRetargetingSDK;
-use Retargeting\Validators\Validator;
-
-class ProductFeedValidator extends AbstractRetargetingSDK implements Validator
+class ProductFeedHelper extends AbstractHelper implements Helper
 {
     /**
      * Check if product feed json is valid or not

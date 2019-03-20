@@ -6,12 +6,9 @@
  * Time: 16:03
  */
 
-namespace Retargeting\Validators\Variation;
+namespace Retargeting\Helpers;
 
-use Retargeting\Validators\AbstractValidator;
-use Retargeting\Validators\Validator;
-
-class CodeValidator extends AbstractValidator implements Validator
+class CodeHelper extends AbstractHelper implements Helper
 {
     /**
      * Check if variation code has proper format

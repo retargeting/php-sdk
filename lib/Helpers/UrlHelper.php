@@ -6,12 +6,9 @@
  * Time: 10:50
  */
 
-namespace Retargeting\Validators\Product;
+namespace Retargeting\Helpers;
 
-use Retargeting\Validators\AbstractValidator;
-use Retargeting\Validators\Validator;
-
-class UrlValidator extends AbstractValidator implements Validator
+final class UrlHelper extends AbstractHelper implements Helper
 {
     const HTTPS_HTTP_VALUE = ['https', 'http'];
     const HTTPS_VALUE = 'https://';

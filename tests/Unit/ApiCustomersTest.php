@@ -32,6 +32,4 @@ class ApiCustomersTest extends TestCase
     }
 
     //@TODO: write tests
-
-
 }

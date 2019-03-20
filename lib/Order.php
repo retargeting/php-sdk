@@ -8,7 +8,7 @@
 
 namespace Retargeting;
 
-use Retargeting\Validators\Email\EmailValidator;
+use Retargeting\Helpers\EmailHelper;
 
 class Order extends AbstractRetargetingSDK
 {
@@ -226,7 +226,7 @@ class Order extends AbstractRetargetingSDK
         $orderNo = $this->formatIntFloatString($this->getOrderNo());
         $lastName = $this->getProperFormattedString($this->getLastName());
         $firstName = $this->getProperFormattedString($this->getFirstName());
-        $email = EmailValidator::sanitize($this->getEmail(), 'email');
+        $email = EmailHelper::sanitize($this->getEmail(), 'email');
         $phone = $this->getProperFormattedString($this->getPhone());
         $state = $this->getProperFormattedString($this->getState());
         $city = $this->getProperFormattedString($this->getCity());

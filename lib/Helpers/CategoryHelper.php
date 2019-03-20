@@ -6,14 +6,10 @@
  * Time: 12:09
  */
 
-namespace Retargeting\Validators\Product;
+namespace Retargeting\Helpers;
 
-use Retargeting\Validators\AbstractValidator;
-use Retargeting\Validators\Validator;
-
-class CategoryValidator extends AbstractValidator implements Validator
+class CategoryHelper extends AbstractHelper implements Helper
 {
-
     /**
      * Format product category
      * @param mixed $categoryData

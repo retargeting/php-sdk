@@ -12,7 +12,7 @@ namespace Retargeting\Helpers;
  * Class Nonce
  * @package Retargeting\Helpers
  */
-class Nonce
+class NonceHelper
 {
 
     /**

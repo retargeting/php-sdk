@@ -12,7 +12,7 @@ namespace Retargeting\Helpers;
  * Class Token
  * @package Retargeting\Helpers
  */
-class Token
+class TokenHelper
 {
 
     /**

@@ -7,12 +7,10 @@
  */
 namespace Retargeting;
 
-use Retargeting\Validators\AbstractValidator;
-
 /**
  * Class AbstractRetargetingSDK
  */
-abstract class AbstractRetargetingSDK extends AbstractValidator
+abstract class AbstractRetargetingSDK
 {
     /**
      * @param array $data

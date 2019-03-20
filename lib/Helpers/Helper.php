@@ -6,13 +6,13 @@
  * Time: 11:44
  */
 
-namespace Retargeting\Validators;
+namespace Retargeting\Helpers;
 
 
-interface Validator
+interface Helper
 {
     /**
-     * Returns an array of error messages, or an empty array
+     * Returns an empty array
      * if $data is valid.
      *
      * @param mixed $data

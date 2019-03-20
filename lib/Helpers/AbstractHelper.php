@@ -6,10 +6,9 @@
  * Time: 11:17
  */
 
-namespace Retargeting\Validators;
+namespace Retargeting\Helpers;
 
-
-class AbstractValidator
+class AbstractHelper
 {
     /**
      * Sanitize a single var according to $type.

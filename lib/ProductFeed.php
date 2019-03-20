@@ -8,7 +8,7 @@
 
 namespace Retargeting;
 
-use Retargeting\Validators\ProductFeed\ProductFeedValidator;
+use Retargeting\Helpers\ProductFeedHelper;
 
 class ProductFeed extends AbstractRetargetingSDK
 {
@@ -36,6 +36,6 @@ class ProductFeed extends AbstractRetargetingSDK
      */
     public function prepareProductFeed()
     {
-        return ProductFeedValidator::validate($this->getProductFeed());
+        return ProductFeedHelper::validate($this->getProductFeed());
     }
 }
