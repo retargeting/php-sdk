@@ -8,33 +8,37 @@
 
 namespace Retargeting\Helpers;
 
-class VariationsHelper extends AbstractHelper implements Helper
+final class VariationsHelper extends AbstractHelper implements Helper
 {
     /**
      * Format variations object
-     * @param mixed $variationData
+     * @param mixed $variation
      * @return array|\stdClass
      */
-    public static function validate($variationData)
+    public static function validate($variation)
     {
-        $variationArr = [];
+        $variationArr = [
+            'variations' => false,
+            'stock' => []
+        ];
 
-        if(is_array($variationData) &&
-            array_key_exists( 'stock', $variationData) &&
-            array_key_exists('variations', $variationData))
+        if(is_array($variation))
         {
-            if(!$variationData['variations'])
+            if(array_key_exists('variations', $variation) && isset($variation['variations']))
             {
-                $variationArr['stock'] = $variationData->stock;
-                $variationArr['variations'] = false;
+                $variationArr['variations'] = $variation['variations'];
             }
             else
             {
-                $variationArr['variations'] = $variationData->variations;
-                $variationArr['stock'] = $variationData->stock;
+                $variationArr['variations'] = false;
+            }
+
+            if(array_key_exists('stock', $variation)  && isset($variation['stock']))
+            {
+                $variationArr['name'] = $variation['stock'];
             }
         }
 
-        return json_encode($variationArr, JSON_PRETTY_PRINT);
+        return $variationArr;
     }
 }

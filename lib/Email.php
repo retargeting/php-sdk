@@ -37,7 +37,7 @@ class Email extends AbstractRetargetingSDK
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -45,7 +45,7 @@ class Email extends AbstractRetargetingSDK
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName($name)
     {
         $this->name = $name;
     }
@@ -53,7 +53,7 @@ class Email extends AbstractRetargetingSDK
     /**
      * @return string
      */
-    public function getPhone(): string
+    public function getPhone()
     {
         return $this->phone;
     }
@@ -61,7 +61,7 @@ class Email extends AbstractRetargetingSDK
     /**
      * @param string $phone
      */
-    public function setPhone(string $phone)
+    public function setPhone($phone)
     {
         $this->phone = $phone;
     }
@@ -69,7 +69,7 @@ class Email extends AbstractRetargetingSDK
     /**
      * @return string
      */
-    public function getCity(): string
+    public function getCity()
     {
         return $this->city;
     }
@@ -77,7 +77,7 @@ class Email extends AbstractRetargetingSDK
     /**
      * @param string $city
      */
-    public function setCity(string $city)
+    public function setCity($city)
     {
         $this->city = $city;
     }
@@ -85,7 +85,7 @@ class Email extends AbstractRetargetingSDK
     /**
      * @return string
      */
-    public function getSex(): string
+    public function getSex()
     {
         return $this->sex;
     }
@@ -93,7 +93,7 @@ class Email extends AbstractRetargetingSDK
     /**
      * @param string $sex
      */
-    public function setSex(string $sex)
+    public function setSex($sex)
     {
         $this->sex = $sex;
     }

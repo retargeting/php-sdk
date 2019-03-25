@@ -9,6 +9,7 @@
 namespace Retargeting\Helpers;
 
 use Retargeting\Exceptions\DecryptException;
+use Retargeting\Exceptions\RTGException;
 
 /**
  * Class Decryption
@@ -24,6 +25,7 @@ class DecryptionHelper
     /**
      * DecryptionHelper constructor.
      * @param $token
+     * @throws RTGException
      */
     public function __construct($token)
     {

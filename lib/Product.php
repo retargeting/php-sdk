@@ -23,6 +23,7 @@ class Product extends AbstractRetargetingSDK
     protected $brand = [];
     protected $category = [];
     protected $inventory = [];
+    protected $additionalImages = [];
 
     /**
      * @return mixed
@@ -45,7 +46,7 @@ class Product extends AbstractRetargetingSDK
      */
     public function getName()
     {
-        return $this->getProperFormattedString($this->name);
+        return $this->name;
     }
 
     /**
@@ -106,17 +107,17 @@ class Product extends AbstractRetargetingSDK
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getPromo(): int
+    public function getPromo()
     {
         return $this->promo;
     }
 
     /**
-     * @param int $promo
+     * @param float $promo
      */
-    public function setPromo(int $promo)
+    public function setPromo($promo)
     {
         $this->promo = $promo;
     }
@@ -124,7 +125,7 @@ class Product extends AbstractRetargetingSDK
     /**
      * @return array
      */
-    public function getBrand(): array
+    public function getBrand()
     {
         return $this->brand;
     }
@@ -132,7 +133,7 @@ class Product extends AbstractRetargetingSDK
     /**
      * @param array $brand
      */
-    public function setBrand(array $brand)
+    public function setBrand($brand)
     {
         $this->brand = $brand;
     }
@@ -140,7 +141,7 @@ class Product extends AbstractRetargetingSDK
     /**
      * @return array
      */
-    public function getCategory(): array
+    public function getCategory()
     {
         return $this->category;
     }
@@ -148,7 +149,7 @@ class Product extends AbstractRetargetingSDK
     /**
      * @param array $category
      */
-    public function setCategory(array $category)
+    public function setCategory($category)
     {
         $this->category = $category;
     }
@@ -156,7 +157,7 @@ class Product extends AbstractRetargetingSDK
     /**
      * @return array
      */
-    public function getInventory(): array
+    public function getInventory()
     {
         return $this->inventory;
     }
@@ -164,24 +165,42 @@ class Product extends AbstractRetargetingSDK
     /**
      * @param array $inventory
      */
-    public function setInventory(array $inventory)
+    public function setInventory($inventory)
     {
         $this->inventory = $inventory;
     }
 
     /**
-     * Prepare product information
-     * @return string
+     * @return array
+     */
+    public function getAdditionalImages()
+    {
+        return $this->additionalImages;
+    }
+
+    /**
+     * @param array $additionalImages
+     */
+    public function setAdditionalImages($additionalImages)
+    {
+        $this->additionalImages = $additionalImages;
+    }
+
+    /**
+     * Prepare product info to array
+     * @return array
+     * @throws \Exception
      */
     public function prepareProductInformation()
     {
         $id     = $this->formatIntFloatString($this->getId());
         $name   = $this->getProperFormattedString($this->getName());
         $url    = UrlHelper::validate($this->getUrl());
+        $img    = UrlHelper::validate($this->getImg());
 
         $price  = $this->formatIntFloatString($this->getPrice());
 
-        if($this->getPromo() > 0)
+        if($this->getPromo() > 0 && $this->getPromo() < $this->getPrice())
         {
             $promo = $this->formatIntFloatString($this->getPromo());
         }
@@ -194,16 +213,42 @@ class Product extends AbstractRetargetingSDK
         $category   = CategoryHelper::validate($this->getCategory());
         $inventory  = VariationsHelper::validate($this->getInventory());
 
-        return $this->toJSON([
+        $additionalImages = $this->validateArrayData($this->getAdditionalImages());
+
+        return [
             'id'        => $id,
             'name'      => $name,
             'url'       => $url,
-            'img'       => $this->getImg(),
+            'img'       => $img,
             'price'     => $price,
             'promo'     => $promo,
             'brand'     => $brand,
             'category'  => $category,
-            'inventory' => $inventory
+            'inventory' => $inventory,
+            'images'    => $additionalImages
+        ];
+    }
+
+    /**
+     * Prepare product info to array
+     * @return string
+     * @throws \Exception
+     */
+    public function prepareProductInformationToJson()
+    {
+        $data = self::prepareProductInformation();
+
+        return $this->toJSON([
+            'id'        => $data['id'],
+            'name'      => $data['name'],
+            'url'       => $data['url'],
+            'img'       => $data['img'],
+            'price'     => $data['price'],
+            'promo'     => $data['promo'],
+            'brand'     => $data['brand'],
+            'category'  => $data['category'],
+            'inventory' => $data['inventory'],
+            'images'    => $data['images']
         ]);
     }
 }

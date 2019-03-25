@@ -8,7 +8,7 @@
 
 namespace Retargeting\Helpers;
 
-class BrandHelper extends AbstractHelper implements Helper
+final class BrandHelper extends AbstractHelper implements Helper
 {
     /**
      * Format brand object
@@ -17,28 +17,27 @@ class BrandHelper extends AbstractHelper implements Helper
      */
     public static function validate($brand)
     {
-        if(is_bool($brand) && !$brand)
-        {
-            return false;
-        }
-        else
+        if(is_array($brand))
         {
             $brandArr = [];
 
-            if(is_array($brand))
+            if(array_key_exists('id', $brand) && isset($brand['id']))
             {
-                if(array_key_exists('id', $brand))
-                {
-                    $brandArr['id'] = $brand['id'];
-                }
-
-                if(array_key_exists('name', $brand))
-                {
-                    $brandArr['name'] = self::sanitize($brand['name'], 'string');
-                }
+                $brandArr['id'] = $brand['id'];
+            }
+            else
+            {
+                return false;
             }
 
-            return json_encode($brandArr, JSON_PRETTY_PRINT);
+            if(array_key_exists('name', $brand)  && isset($brand['name']))
+            {
+                $brandArr['name'] = self::sanitize($brand['name'], 'string');
+            }
+
+            return $brandArr;
         }
+
+        return false;
     }
 }

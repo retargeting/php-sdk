@@ -17,7 +17,7 @@ class ProductFeed extends AbstractRetargetingSDK
     /**
      * @return array
      */
-    public function getProductFeed(): array
+    public function getProductFeed()
     {
         return $this->productFeed;
     }
@@ -25,17 +25,16 @@ class ProductFeed extends AbstractRetargetingSDK
     /**
      * @param array $productFeed
      */
-    public function setProductFeed(array $productFeed)
+    public function setProductFeed($productFeed)
     {
         $this->productFeed = $productFeed;
     }
 
     /**
-     * Prepare product feed JSON
      * @return array|mixed
      */
     public function prepareProductFeed()
     {
-        return ProductFeedHelper::validate($this->getProductFeed());
+        return $this->toJSON(ProductFeedHelper::validate($this->getProductFeed()));
     }
 }

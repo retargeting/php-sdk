@@ -16,7 +16,7 @@ class Category extends AbstractRetargetingSDK
 {
     protected $id = 0;
     protected $name = '';
-    protected $parent = 0;
+    protected $parent = false;
     protected $breadcrumb = [];
 
     /**
@@ -54,7 +54,7 @@ class Category extends AbstractRetargetingSDK
     /**
      * @return int
      */
-    public function getParent(): int
+    public function getParent()
     {
         return $this->parent;
     }
@@ -62,7 +62,7 @@ class Category extends AbstractRetargetingSDK
     /**
      * @param int $parent
      */
-    public function setParent(int $parent)
+    public function setParent($parent)
     {
         $this->parent = $parent;
     }
@@ -70,7 +70,7 @@ class Category extends AbstractRetargetingSDK
     /**
      * @return array
      */
-    public function getBreadcrumb(): array
+    public function getBreadcrumb()
     {
         return $this->breadcrumb;
     }

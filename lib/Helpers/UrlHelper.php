@@ -10,30 +10,32 @@ namespace Retargeting\Helpers;
 
 final class UrlHelper extends AbstractHelper implements Helper
 {
-    const HTTPS_HTTP_VALUE = ['https', 'http'];
+    const HTTP_PROTOCOLS = ['https', 'http'];
     const HTTPS_VALUE = 'https://';
 
     /**
      * Check if url contains https/http
-     * @param mixed $url
-     * @return array|bool|mixed
+     * @param $url
+     * @return mixed
+     * @throws \Exception
      */
     public static function validate($url)
     {
-        $url = (string)$url;
-
-        $url = strip_tags(trim($url));
-
-        $url = self::sanitize($url, 'url');
-
-        $url = parse_url($url);
-
-        if(isset($url['scheme']) && in_array($url['scheme'], self::HTTPS_HTTP_VALUE))
+        if(empty($url))
         {
-            return $url;
-        } else {
-            return self::prepend(filter_input(INPUT_GET, 'link', FILTER_SANITIZE_URL), self::HTTPS_VALUE);
+            self::_throwException('emptyURL');
         }
+
+        $url = self::formatString($url);
+
+        $parsedUrl = parse_url($url);
+
+        if(isset($parsedUrl['scheme']) && !in_array($parsedUrl['scheme'], self::HTTP_PROTOCOLS))
+        {
+            $url = self::prepend(filter_input(INPUT_GET, 'link', FILTER_SANITIZE_URL), self::HTTPS_VALUE) . $parsedUrl['path'] . '?' . $parsedUrl['query'];
+        }
+
+        return self::sanitize($url, 'url');
     }
 
     /**

@@ -8,7 +8,10 @@
 
 namespace Retargeting\Exceptions;
 
-
+/**
+ * Class RTGException
+ * @package Retargeting\Exceptions
+ */
 class RTGException extends \Exception
 {
 

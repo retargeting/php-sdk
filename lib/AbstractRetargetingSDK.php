@@ -16,7 +16,7 @@ abstract class AbstractRetargetingSDK
      * @param array $data
      * @return string
      */
-    public function toJSON(array $data): string
+    public function toJSON(array $data)
     {
         return json_encode($data, JSON_PRETTY_PRINT);
     }
@@ -59,5 +59,19 @@ abstract class AbstractRetargetingSDK
         {
             return $this->getProperFormattedString($value);
         }
+    }
+
+    /**
+     * Format url from an array
+     * @param $array
+     * @return array
+     */
+    public function validateArrayData($array)
+    {
+        $mappedArray = array_map(function($item){
+            return $this->getProperFormattedString($item);
+        }, $array);
+
+        return $mappedArray;
     }
 }

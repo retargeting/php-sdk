@@ -12,7 +12,7 @@ use Retargeting\Helpers\EmailHelper;
 
 class Order extends AbstractRetargetingSDK
 {
-    protected $orderNo = 0;
+    protected $orderNo;
     protected $lastName = '';
     protected $firstName = '';
     protected $email = '';

@@ -8,6 +8,8 @@
 
 namespace Retargeting;
 
+use Retargeting\Helpers\BrandHelper;
+
 class Brand extends AbstractRetargetingSDK
 {
     protected $id;
@@ -32,7 +34,7 @@ class Brand extends AbstractRetargetingSDK
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -40,16 +42,16 @@ class Brand extends AbstractRetargetingSDK
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName($name)
     {
         $this->name = $name;
     }
 
     public function prepareBrandInformation()
     {
-        return $this->toJSON([
+        return $this->toJSON(BrandHelper::validate([
             'id' => $this->getId(),
             'name' => $this->getProperFormattedString($this->getName())
-        ]);
+        ]));
     }
 }

@@ -180,10 +180,10 @@ class Client
         return curl_exec($curl_request);
     }
 
-    /**
+    /**_throwException
      * Method: throw new exception with custom message
      * @param string $message
-     * @throws Exception
+     * @throws \Exception
      */
     private function _throwException($message)
     {
@@ -193,9 +193,9 @@ class Client
             "apiVersionType" => "The API version must be a string",
             "responseFormat" => "The response format can only be json or serial (php serialize)",
             "decodingMode" => "Decoding must be boolean",
-            "emptyApiPath" => "You API request"
+            "emptyApiPath" => "You API request is empty"
         );
 
-        throw new Exception($messages[$message]);
+        throw new \Exception($messages[$message]);
     }
 }

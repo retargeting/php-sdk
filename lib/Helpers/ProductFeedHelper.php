@@ -8,7 +8,7 @@
 
 namespace Retargeting\Helpers;
 
-class ProductFeedHelper extends AbstractHelper implements Helper
+final class ProductFeedHelper extends AbstractHelper implements Helper
 {
     /**
      * Check if product feed json is valid or not
@@ -17,6 +17,8 @@ class ProductFeedHelper extends AbstractHelper implements Helper
      */
     public static function validate($feed)
     {
+        $feed = json_encode($feed);
+
         $result = json_decode($feed);
 
         switch (json_last_error()) {
@@ -57,5 +59,16 @@ class ProductFeedHelper extends AbstractHelper implements Helper
         }
 
         return $result;
+    }
+
+    /**
+     * Formats price into format, e.g. 1000.99.
+     *
+     * @param int|float|string $price the price string to format.
+     * @return string|null the formatted price.
+     */
+    public static function formatPrice($price)
+    {
+        return is_numeric($price) ? number_format($price, 2, '.', '') : null;
     }
 }

@@ -8,7 +8,7 @@
 
 namespace Retargeting\Helpers;
 
-class EmailHelper extends AbstractHelper implements Helper
+final class EmailHelper extends AbstractHelper implements Helper
 {
     /**
      * Format email properly

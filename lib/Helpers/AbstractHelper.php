@@ -44,4 +44,57 @@ class AbstractHelper
 
         return $result;
     }
+
+    /**
+     * Format string
+     * @param $string
+     * @return string
+     */
+    public static function formatString($string)
+    {
+        $string = stripslashes(htmlspecialchars_decode(trim(strip_tags((string)$string))));
+
+        $string = self::sanitize($string, 'string');
+
+        return $string;
+    }
+
+    /**
+     * Filter an array by key
+     * @param $array
+     * @param $keyname
+     * @return array
+     */
+    public static function filterArrayByKey($array, $keyname)
+    {
+        $new_array = [];
+
+        foreach($array as $key => $value) {
+
+            if(!isset($new_array[$value[$keyname]])) {
+                $new_array[$value[$keyname]] = $value;
+            }
+        }
+
+        $new_array = array_values($new_array);
+
+        return $new_array;
+    }
+
+    /**
+     * Throw exceptions when validating data
+     * @param $message
+     * @throws \Exception
+     */
+    public static function _throwException($message)
+    {
+        $messages = array(
+            "emptyURL" => "Url is required. Please don't leave it empty.",
+            "emptyCustomerData" => "Customer data is required. Please don't leave it empty.",
+            "emptyToken" => "Token is required. Please don't leave it empty.",
+            "wrongFormat" => "The array format you provided is wrong."
+        );
+
+        throw new \Exception($messages[$message]);
+    }
 }

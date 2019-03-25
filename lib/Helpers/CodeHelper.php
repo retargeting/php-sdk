@@ -8,7 +8,7 @@
 
 namespace Retargeting\Helpers;
 
-class CodeHelper extends AbstractHelper implements Helper
+final class CodeHelper extends AbstractHelper implements Helper
 {
     /**
      * Check if variation code has proper format

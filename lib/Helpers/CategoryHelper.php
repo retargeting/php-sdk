@@ -8,7 +8,7 @@
 
 namespace Retargeting\Helpers;
 
-class CategoryHelper extends AbstractHelper implements Helper
+final class CategoryHelper extends AbstractHelper implements Helper
 {
     /**
      * Format product category
@@ -18,41 +18,33 @@ class CategoryHelper extends AbstractHelper implements Helper
     public static function validate($categoryData)
     {
         $categoryArr = [];
-        $breadCrumbArr = [];
 
-        $categoryArr['id'] = '';
-        $categoryArr['name'] = '';
-        $categoryArr['parent'] = false;
-        $categoryArr['breadcrumb'] = [];
+        if(!empty($categoryData))
+        {
+            //Check if there are duplicated parent categories
+            $categoryData = self::filterArrayByKey($categoryData, 'parent');
 
-        if(!empty($categoryData) && count($categoryData) < 2)
-        {
-            $categoryArr['id']          = $categoryData['id'];
-            $categoryArr['name']        = self::sanitize($categoryData['name'], 'string');
-            $categoryArr['parent']      = false;
-            $categoryArr['breadcrumb']  = [];
-        }
-        else
-        {
-            if(!empty($categoryData))
+            //Get the first category if there is only one
+            if(count($categoryData) < 2)
+            {
+                $categoryArr['id']          = $categoryData[0]['id'];
+                $categoryArr['name']        = self::formatString($categoryData[0]['name']);
+                $categoryArr['parent']      = false;
+                $categoryArr['breadcrumb']  = [];
+            }
+            //Check if there are nested categories
+            else if (count($categoryData) >= 2)
             {
                 foreach($categoryData as $category)
                 {
-                    if(isset($category['breadcrumb']['id']))
-                    {
-                        $breadCrumbArr['id'] = $category['breadcrumb']['id'];
-                        $breadCrumbArr['name'] = self::sanitize($category['breadcrumb']['name'], 'string');
-                        $breadCrumbArr['parent'] = $category['breadcrumb']['parent'];
-                    }
+                    $category['name'] = self::formatString($category['name']);
+                    $category['breadcrumb'] = is_array($category['breadcrumb']) ? $category['breadcrumb'] : (array)$category['breadcrumb'];
 
-                    $categoryArr['id']        = $category->id;
-                    $categoryArr['name']      = self::sanitize($categoryData->name, 'string');
-                    $categoryArr['parent']    = $category->parent;
-                    $categoryArr['breadcrumb'] = isset($category['breadcrumb']['id']) ? $breadCrumbArr : [];
+                    $categoryArr[]        = $category;
                 }
             }
         }
 
-        return json_encode($categoryArr, JSON_PRETTY_PRINT);
+        return $categoryArr;
     }
 }

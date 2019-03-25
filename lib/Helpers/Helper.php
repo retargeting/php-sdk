@@ -12,11 +12,9 @@ namespace Retargeting\Helpers;
 interface Helper
 {
     /**
-     * Returns an empty array
-     * if $data is valid.
-     *
-     * @param mixed $data
-     * @return array An array of error messages
+     * Interface validate method
+     * @param $data
+     * @return mixed
      */
     public static function validate($data);
 }

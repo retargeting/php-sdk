@@ -12,19 +12,8 @@ namespace Retargeting\Helpers;
  * Class Token
  * @package Retargeting\Helpers
  */
-class TokenHelper
+final class TokenHelper
 {
-
-    /**
-     * Used just for
-     * @TODO: Remove this
-     * @return string
-     */
-    public static function createRandomToken()
-    {
-        return hash('sha256', time());
-    }
-
     /**
      * This method will be used to generate user token right after module setup. The key must be saved in
      * Retargeting admin account and on client website.
