@@ -28,6 +28,8 @@ class OrderProducts extends AbstractRetargetingSDK
      */
     public function setId($id)
     {
+        $id = $this->formatIntFloatString($id);
+
         $this->id = $id;
     }
 
@@ -44,6 +46,8 @@ class OrderProducts extends AbstractRetargetingSDK
      */
     public function setQuantity($quantity)
     {
+        $quantity = $this->formatIntFloatString($quantity);
+
         $this->quantity = $quantity;
     }
 
@@ -60,6 +64,8 @@ class OrderProducts extends AbstractRetargetingSDK
      */
     public function setPrice($price)
     {
+        $price = $this->formatIntFloatString($price);
+
         $this->price = $price;
     }
 
@@ -76,6 +82,8 @@ class OrderProducts extends AbstractRetargetingSDK
      */
     public function setVariationCode($variationCode)
     {
+        $variationCode = $this->getProperFormattedString($variationCode);
+
         $this->variationCode = $variationCode;
     }
 
@@ -86,10 +94,10 @@ class OrderProducts extends AbstractRetargetingSDK
     public function prepareOrderProductsInfo()
     {
         return $this->toJSON([
-            'id' => $this->formatIntFloatString($this->getId()),
-            'quantity' => $this->formatIntFloatString($this->getQuantity()),
-            'price' => $this->formatIntFloatString($this->getPrice()),
-            'variation_code' => $this->getProperFormattedString($this->getVariationCode())
+            'id'                => $this->getId(),
+            'quantity'          => $this->getQuantity(),
+            'price'             => $this->getPrice(),
+            'variation_code'    => $this->getVariationCode()
         ]);
     }
 }

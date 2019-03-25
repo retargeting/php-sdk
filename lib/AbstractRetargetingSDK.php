@@ -45,20 +45,33 @@ abstract class AbstractRetargetingSDK
      */
     public function formatIntFloatString($value)
     {
-        $value = strip_tags(trim($value));
-
-        if(is_numeric($value) && !is_float($value))
+        if(!is_numeric($value))
         {
-            return (int)$value;
+            return 0;
         }
-        else if(is_numeric($value) && is_float($value))
+
+        if($this->isFloat($value))
         {
             return (float)$value;
+        }
+        else if(!$this->isFloat($value))
+        {
+            return (int)$value;
         }
         else
         {
             return $this->getProperFormattedString($value);
         }
+    }
+
+    /**
+     * Is value float or not
+     * @param $num
+     * @return bool
+     */
+    function isFloat($num)
+    {
+        return is_float($num) || is_numeric($num) && ((float) $num != (int) $num);
     }
 
     /**

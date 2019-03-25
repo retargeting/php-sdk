@@ -38,6 +38,8 @@ class Product extends AbstractRetargetingSDK
      */
     public function setId($id)
     {
+        $id = $this->formatIntFloatString($id);
+
         $this->id = $id;
     }
 
@@ -54,6 +56,8 @@ class Product extends AbstractRetargetingSDK
      */
     public function setName($name)
     {
+        $name = $this->getProperFormattedString($name);
+
         $this->name = $name;
     }
 
@@ -67,10 +71,12 @@ class Product extends AbstractRetargetingSDK
 
     /**
      * @param $url
-     * @return array|bool|mixed
+     * @throws \Exception
      */
     public function setUrl($url)
     {
+        $url = UrlHelper::validate($url);
+
         $this->url = $url;
     }
 
@@ -83,10 +89,13 @@ class Product extends AbstractRetargetingSDK
     }
 
     /**
-     * @param mixed $img
+     * @param $img
+     * @throws \Exception
      */
     public function setImg($img)
     {
+        $img = UrlHelper::validate($img);
+
         $this->img = $img;
     }
 
@@ -103,6 +112,8 @@ class Product extends AbstractRetargetingSDK
      */
     public function setPrice($price)
     {
+        $price = $this->formatIntFloatString($price);
+
         $this->price = $price;
     }
 
@@ -119,6 +130,15 @@ class Product extends AbstractRetargetingSDK
      */
     public function setPromo($promo)
     {
+        if($promo > 0 && $promo < $this->getPrice())
+        {
+            $promo = $this->formatIntFloatString($promo);
+        }
+        else
+        {
+            $promo = 0;
+        }
+
         $this->promo = $promo;
     }
 
@@ -135,6 +155,8 @@ class Product extends AbstractRetargetingSDK
      */
     public function setBrand($brand)
     {
+        $brand = BrandHelper::validate($brand);
+
         $this->brand = $brand;
     }
 
@@ -151,6 +173,8 @@ class Product extends AbstractRetargetingSDK
      */
     public function setCategory($category)
     {
+        $category   = CategoryHelper::validate($category);
+
         $this->category = $category;
     }
 
@@ -167,6 +191,8 @@ class Product extends AbstractRetargetingSDK
      */
     public function setInventory($inventory)
     {
+        $inventory  = VariationsHelper::validate($inventory);
+
         $this->inventory = $inventory;
     }
 
@@ -183,6 +209,8 @@ class Product extends AbstractRetargetingSDK
      */
     public function setAdditionalImages($additionalImages)
     {
+        $additionalImages = $this->validateArrayData($additionalImages);
+
         $this->additionalImages = $additionalImages;
     }
 
@@ -193,39 +221,17 @@ class Product extends AbstractRetargetingSDK
      */
     public function prepareProductInformation()
     {
-        $id     = $this->formatIntFloatString($this->getId());
-        $name   = $this->getProperFormattedString($this->getName());
-        $url    = UrlHelper::validate($this->getUrl());
-        $img    = UrlHelper::validate($this->getImg());
-
-        $price  = $this->formatIntFloatString($this->getPrice());
-
-        if($this->getPromo() > 0 && $this->getPromo() < $this->getPrice())
-        {
-            $promo = $this->formatIntFloatString($this->getPromo());
-        }
-        else
-        {
-            $promo = 0;
-        }
-
-        $brand      = BrandHelper::validate($this->getBrand());
-        $category   = CategoryHelper::validate($this->getCategory());
-        $inventory  = VariationsHelper::validate($this->getInventory());
-
-        $additionalImages = $this->validateArrayData($this->getAdditionalImages());
-
         return [
-            'id'        => $id,
-            'name'      => $name,
-            'url'       => $url,
-            'img'       => $img,
-            'price'     => $price,
-            'promo'     => $promo,
-            'brand'     => $brand,
-            'category'  => $category,
-            'inventory' => $inventory,
-            'images'    => $additionalImages
+            'id'        => $this->getId(),
+            'name'      => $this->getName(),
+            'url'       => $this->getUrl(),
+            'img'       => $this->getImg(),
+            'price'     => $this->getPrice(),
+            'promo'     => $this->getPromo(),
+            'brand'     => $this->getBrand(),
+            'category'  => $this->getCategory(),
+            'inventory' => $this->getInventory(),
+            'images'    => $this->getAdditionalImages()
         ];
     }
 

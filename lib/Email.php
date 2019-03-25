@@ -31,6 +31,8 @@ class Email extends AbstractRetargetingSDK
      */
     public function setEmail($email)
     {
+        $email = EmailHelper::validate($email);
+
         $this->email = $email;
     }
 
@@ -47,6 +49,8 @@ class Email extends AbstractRetargetingSDK
      */
     public function setName($name)
     {
+        $name = $this->getProperFormattedString($name);
+
         $this->name = $name;
     }
 
@@ -63,6 +67,8 @@ class Email extends AbstractRetargetingSDK
      */
     public function setPhone($phone)
     {
+        $phone = $this->formatIntFloatString($phone);
+
         $this->phone = $phone;
     }
 
@@ -79,6 +85,8 @@ class Email extends AbstractRetargetingSDK
      */
     public function setCity($city)
     {
+        $city = $this->getProperFormattedString($city);
+
         $this->city = $city;
     }
 
@@ -95,6 +103,8 @@ class Email extends AbstractRetargetingSDK
      */
     public function setSex($sex)
     {
+        $sex = is_numeric($sex) ? $sex : (int)$sex;
+
         $this->sex = $sex;
     }
 
@@ -104,19 +114,12 @@ class Email extends AbstractRetargetingSDK
      */
     public function prepareEmailData()
     {
-        $email = EmailHelper::validate($this->getEmail());
-        $name = $this->getProperFormattedString($this->getName());
-        $phone = $this->formatIntFloatString($this->getPhone());
-        $city = $this->getProperFormattedString($this->getCity());
-
-        $sex = is_numeric($this->getSex()) ? $this->getSex() : (int)$this->getSex();
-
         return $this->toJSON([
-            'email' => $email,
-            'name'  => $name,
-            'phone' => $phone,
-            'city'  => $city,
-            'sex'   => $sex
+            'email' => $this->getEmail(),
+            'name'  => $this->getName(),
+            'phone' => $this->getPhone(),
+            'city'  => $this->getCity(),
+            'sex'   => $this->getSex()
         ]);
     }
 }

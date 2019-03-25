@@ -25,6 +25,8 @@ class Checkout extends AbstractRetargetingSDK
      */
     public function setProductIds(array $productIds)
     {
+        $productIds = is_array($productIds) ? $productIds : (array)$productIds;
+
         $this->productIds = $productIds;
     }
 
@@ -34,10 +36,8 @@ class Checkout extends AbstractRetargetingSDK
      */
     public function prepareCheckoutIds()
     {
-        $productIds = is_array($this->getProductIds()) ? $this->getProductIds() : (array)$this->getProductIds();
-
         return $this->toJSON(
-            $productIds
+            $this->getProductIds()
         );
     }
 }

@@ -13,7 +13,7 @@ use Retargeting\Helpers\CodeHelper;
 class Variation extends AbstractRetargetingSDK
 {
     protected $code = '';
-    protected $stock = 0;
+    protected $stock = false;
     protected $details = [];
 
     /**
@@ -70,13 +70,10 @@ class Variation extends AbstractRetargetingSDK
      */
     public function prepareVariationInfo()
     {
-        $code = CodeHelper::validate($this->getCode());
-        $stock = (bool)$this->getStock();
-
         return $this->toJSON([
-            'code' => $code,
-            'stock' => $stock,
-            'details' => $this->getDetails()
+            'code'      => $this->getCode(),
+            'stock'     => (bool)$this->getStock(),
+            'details'   => $this->getDetails()
         ]);
     }
 }

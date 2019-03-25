@@ -32,6 +32,8 @@ class Category extends AbstractRetargetingSDK
      */
     public function setId($id)
     {
+        $id = $this->getProperFormattedString($id);
+
         $this->id = $id;
     }
 
@@ -48,6 +50,8 @@ class Category extends AbstractRetargetingSDK
      */
     public function setName($name)
     {
+        $name = $this->getProperFormattedString($name);
+
         $this->name = $name;
     }
 
@@ -64,6 +68,8 @@ class Category extends AbstractRetargetingSDK
      */
     public function setParent($parent)
     {
+        $parent = is_bool($parent) && !$parent ? false : $parent;
+
         $this->parent = $parent;
     }
 
@@ -89,15 +95,10 @@ class Category extends AbstractRetargetingSDK
      */
     public function prepareCategoryData()
     {
-        $id = $this->getProperFormattedString($this->getId());
-        $name = $this->getProperFormattedString($this->getName());
-
-        $parent = is_bool($this->getParent()) && !$this->getParent() ? false : $this->getParent();
-
         return $this->toJSON([
-            'id'            => $id,
-            'name'          => $name,
-            'parent'        => $parent,
+            'id'            => $this->getId(),
+            'name'          => $this->getName(),
+            'parent'        => $this->getParent(),
             'breadcrumb'    => $this->getBreadcrumb()
         ]);
     }
