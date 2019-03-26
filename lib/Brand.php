@@ -47,6 +47,10 @@ class Brand extends AbstractRetargetingSDK
         $this->name = $name;
     }
 
+    /**
+     * Prepare brand information
+     * @return string
+     */
     public function prepareBrandInformation()
     {
         return $this->toJSON(BrandHelper::validate([

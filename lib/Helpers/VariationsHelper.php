@@ -35,7 +35,7 @@ final class VariationsHelper extends AbstractHelper implements Helper
 
             if(array_key_exists('stock', $variation)  && isset($variation['stock']))
             {
-                $variationArr['name'] = $variation['stock'];
+                $variationArr['stock'] = $variation['stock'];
             }
         }
 

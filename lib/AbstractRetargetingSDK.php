@@ -7,6 +7,8 @@
  */
 namespace Retargeting;
 
+use Retargeting\Helpers\UrlHelper;
+
 /**
  * Class AbstractRetargetingSDK
  */
@@ -82,7 +84,7 @@ abstract class AbstractRetargetingSDK
     public function validateArrayData($array)
     {
         $mappedArray = array_map(function($item){
-            return $this->getProperFormattedString($item);
+            return UrlHelper::validate($item);
         }, $array);
 
         return $mappedArray;

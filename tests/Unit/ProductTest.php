@@ -22,7 +22,7 @@ class ProductTest extends TestCase
     {
         $this->product = new Product();
 
-        $this->product->setUrl('http://google.ro');
+        $this->product->setUrl('http://www.google.ro');
         $this->product->setImg('https://www.google.com/img.png');
     }
 
@@ -58,7 +58,7 @@ class ProductTest extends TestCase
      */
     public function test_if_product_url_is_set()
     {
-        $this->assertEquals($this->product->getUrl(), 'http://google.ro');
+        $this->assertEquals($this->product->getUrl(), 'http://www.google.ro');
     }
 
     /**
@@ -130,7 +130,7 @@ class ProductTest extends TestCase
     }
 
     /**
-     *
+     * Test if product category has correct format with only one parent category without subcategory and breadcrumb
      */
     public function test_if_product_category_has_correct_format_with_only_one_parent_category()
     {
@@ -152,7 +152,7 @@ class ProductTest extends TestCase
     }
 
     /**
-     * Test if product has category
+     * Test if product has category with parent category, subcategory and breadcrumb
      */
     public function test_if_product_has_category_with_parent_category_and_breadcrumb()
     {
@@ -190,6 +190,85 @@ class ProductTest extends TestCase
                     ["id" => 20, "name" => "Shoes", "parent" => false]
                 ]
             ]
+        ]);
+    }
+
+    /**
+     * Test if product inventory is array
+     */
+    public function test_if_product_inventory_is_array()
+    {
+        $this->product->setInventory([
+            "variations" => true,
+            "stock" => [
+                "42-B" => true,
+                "42-W" => false,
+                "43-B" => true,
+                "43-W" => true
+            ]
+        ]);
+
+        $this->assertIsArray($this->product->getInventory());
+    }
+
+    /**
+     * Test if product inventory is array
+     */
+    public function test_if_product_inventory_has_correct_format()
+    {
+        $this->product->setInventory([
+            "variations" => true,
+            "stock" => [
+                "42-B" => true,
+                "42-W" => false,
+                "43-B" => true,
+                "43-W" => true
+            ]
+        ]);
+
+        $this->assertEquals($this->product->getInventory(), [
+            "variations" => true,
+            "stock" => [
+                "42-B" => true,
+                "42-W" => false,
+                "43-B" => true,
+                "43-W" => true
+            ]
+        ]);
+    }
+
+    /**
+     * Test if product additional images is not null
+     */
+    public function test_if_product_has_additional_images()
+    {
+        $this->product->setAdditionalImages([
+            'https://www.example.com/image/product-test-1.png',
+            'https://www.example.com/image/product-test-2.png',
+            'https://www.example.com/image/product-test-3.png',
+            'https://www.example.com/image/product-test-4.png',
+        ]);
+
+        $this->assertNotNull($this->product->getAdditionalImages());
+    }
+
+    /**
+     * Check if images url have proper format and data is returned correctly
+     */
+    public function test_if_product_prepare_information_return_correct_format_array()
+    {
+        $this->product->setAdditionalImages([
+            'https://www.example.com/image/product-test-1.png',
+            'https://www.example.com/image/product-test-2.png',
+            'https://www.example.com/image/product-test-3.png',
+            'https://www.example.com/image/product-test-4.png',
+        ]);
+
+        $this->assertEquals($this->product->getAdditionalImages(), [
+            'https://www.example.com/image/product-test-1.png',
+            'https://www.example.com/image/product-test-2.png',
+            'https://www.example.com/image/product-test-3.png',
+            'https://www.example.com/image/product-test-4.png',
         ]);
     }
 }

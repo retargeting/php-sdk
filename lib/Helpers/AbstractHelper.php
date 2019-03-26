@@ -90,6 +90,7 @@ class AbstractHelper
     {
         $messages = array(
             "emptyURL" => "Url is required. Please don't leave it empty.",
+            "wrongUrl" => "The url has wrong format.",
             "emptyCustomerData" => "Customer data is required. Please don't leave it empty.",
             "emptyToken" => "Token is required. Please don't leave it empty.",
             "wrongFormat" => "The array format you provided is wrong."

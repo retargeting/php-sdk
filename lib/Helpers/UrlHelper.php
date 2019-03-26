@@ -30,6 +30,11 @@ final class UrlHelper extends AbstractHelper implements Helper
 
         $parsedUrl = parse_url($url);
 
+        if(!array_key_exists('host', $parsedUrl))
+        {
+            self::_throwException('wrongUrl');
+        }
+
         if(isset($parsedUrl['scheme']) && !in_array($parsedUrl['scheme'], self::HTTP_PROTOCOLS))
         {
             $url = self::prepend(filter_input(INPUT_GET, 'link', FILTER_SANITIZE_URL), self::HTTPS_VALUE) . $parsedUrl['path'] . '?' . $parsedUrl['query'];
