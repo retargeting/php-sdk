@@ -11,7 +11,7 @@ Clone the repository in your platform root folder.
 
 ##Example
 
-###Product class for sendProduct implementation
+###Product class for sendProduct implementation (Sample)
 
 ```php
 use Retargeting/Product;
@@ -68,6 +68,69 @@ $product->setInventory($inventory);
 $product->setAdditionalImages($additionalImages)
 
 echo $product->prepareProductInformation();
+```
+
+###Product class for sendProduct implementation (Response)
+
+```json
+[
+    {
+        "id": 42,
+        "name": "Apple Cinema 30\"",
+        "url": "http:\/\/localhost\/upload\/test",
+        "img": "http:\/\/localhost\/upload\/image\/catalog\/demo\/apple_cinema_30.jpg",
+        "price": 122,
+        "promo": 90,
+        "brand": {
+            "id": "8",
+            "name": "Apple"
+        },
+        "category": [
+            {
+                "id": "20",
+                "name": "Desktops",
+                "parent": false,
+                "breadcrumb": []
+            },
+            {
+                "id": "28",
+                "name": "Monitors",
+                "parent": "25",
+                "breadcrumb": [
+                    {
+                        "id": "25",
+                        "name": "Components",
+                        "parent": false
+                    }
+                ]
+            }
+        ],
+        "inventory": {
+            "variations": true,
+            "stock": [],
+            "name": {
+                "Small": true,
+                "Medium": true,
+                "Large": true,
+                "Checkbox 1": true,
+                "Checkbox 2": true,
+                "Checkbox 3": true,
+                "Checkbox 4": true,
+                "Red": true,
+                "Blue": true,
+                "Green": true,
+                "Yellow": true
+            }
+        },
+        "images": [
+            "http:\/\/localhost\/upload\/image\/catalog\/demo\/canon_logo.jpg",
+            "http:\/\/localhost\/upload\/image\/catalog\/demo\/hp_1.jpg",
+            "http:\/\/localhost\/upload\/image\/catalog\/demo\/compaq_presario.jpg",
+            "http:\/\/localhost\/upload\/image\/catalog\/demo\/canon_eos_5d_1.jpg",
+            "http:\/\/localhost\/upload\/image\/catalog\/demo\/canon_eos_5d_2.jpg"
+        ]
+    }
+]
 ```
 
 |    **Parameter**    |    **Type**    |    **Required**    |    **Description**    |
