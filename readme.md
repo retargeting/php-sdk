@@ -17,51 +17,50 @@ Clone the repository in your platform root folder.
 use Retargeting/Product;
 
 $brand = [
-     'id' => 90, 
-     'name' => 'Nike'
+     'id' => 8, 
+     'name' => 'Apple'
 ];
 
 $category = [
     [
-      "id" => 75,
-      "name" => "Men footwear",
+      "id" => 20,
+      "name" => "Desktop",
       "parent" => false,
       "breadcrumb" => []
     ],
     [
-      "id" => 22,
-      "name" => "Sport sneakers",
-      "parent" => 21,
+      "id" => 28,
+      "name" => "Monitors",
+      "parent" => 25,
       "breadcrumb" => [
-          ["id" => 21, "name" => "Sneakers", "parent" => 20],
-          ["id" => 20, "name" => "Shoes", "parent" => false]
+          ["id" => 25, "name" => "Components", "parent" => false]     
     ]
 ];
 
 $inventory = [
     'variations' => true,
     'stock' => [
-        '42-B' => true,
-        '42-C' => false,
-        '42-R' => true,
+        'Red' => true,
+        'Small' => false,
+        'Medium' => true,
     ]
 ];
 
 $additionalImages = [
-    'https://www.example.com/catalog/image/sneaker_1.png',
-    'https://www.example.com/catalog/image/sneaker_2.png',
-    'https://www.example.com/catalog/image/sneaker_3.png',
-    'https://www.example.com/catalog/image/sneaker_4.png',
-    'https://www.example.com/catalog/image/sneaker_5.png',
+    "http://localhost/upload/image/catalog/demo/canon_logo.jpg",
+    "http://localhost/upload/image/catalog/demo/hp_1.jpg",
+    "http://localhost/upload/image/catalog/demo/compaq_presario.jpg",
+    "http://localhost/upload/image/catalog/demo/canon_eos_5d_1.jpg",
+    "http://localhost/upload/image/catalog/demo/canon_eos_5d_2.jpg"
 ];
 
 $product = new Product();
-$product->setId(123);
+$product->setId(42);
 $product->setName('Shoes');
-$product->setUrl('https://www.example.com/shoes/sport-sneakers/sneaker_1');
-$product->setImg('https://www.example.com/catalog/image/sneaker_1.png');
-$product->setPrice(100.23);
-$product->setPromo(80);
+$product->setUrl('http://localhost/upload/test');
+$product->setImg('http://localhost/upload/image/catalog/demo/apple_cinema_30.jpg');
+$product->setPrice(122);
+$product->setPromo(90);
 $product->setBrand($brand);
 $product->setCategory($category);
 $product->setInventory($inventory);
