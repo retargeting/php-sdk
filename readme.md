@@ -1,13 +1,13 @@
 # Retargeting SDK 
 
 ## Overview
-Retargeting SDK is a software development tool for E-Commerce platforms that simplifies the implementation of Retargeting extension.
+Retargeting SDK is a software development tool for E-Commerce platforms that simplifies the implementation of Retargeting extension
 
 ##Minimum requirements
 The Retargeting SDK requires at least PHP version 5.4.0 and it's also compatible with PHP >= 7.0.0
 
 ## How to install
-Clone the repository in your platform root folder.
+Clone the repository in your platform root folder
 
 ##Example
 
