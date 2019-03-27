@@ -12,8 +12,8 @@ Clone the repository in your platform root folder.
 ##Example
 
 ###Product class for sendProduct implementation
-```php
 
+```php
 use Retargeting/Product;
 
 $brand = [
@@ -47,6 +47,14 @@ $inventory = [
     ]
 ];
 
+$additionalImages = [
+    'https://www.example.com/catalog/image/sneaker_1.png',
+    'https://www.example.com/catalog/image/sneaker_2.png',
+    'https://www.example.com/catalog/image/sneaker_3.png',
+    'https://www.example.com/catalog/image/sneaker_4.png',
+    'https://www.example.com/catalog/image/sneaker_5.png',
+];
+
 $product = new Product();
 $product->setId(123);
 $product->setName('Shoes');
@@ -56,8 +64,8 @@ $product->setPrice(100.23);
 $product->setPromo(80);
 $product->setBrand($brand);
 $product->setCategory($category);
-$product->setInventory($category);
-$product->setAdditionalImages($inventory)
+$product->setInventory($inventory);
+$product->setAdditionalImages($additionalImages)
 
 echo $product->prepareProductInformation();
 ```

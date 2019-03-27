@@ -2,6 +2,8 @@
 
 ## Customers
 
+
+
 Each customer object must be encrypted using Encryption Helpers. When you develop this API Endpoint, you can leave it plain.
 
 Response example (plain)
