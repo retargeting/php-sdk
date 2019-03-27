@@ -70,15 +70,15 @@ $product->setAdditionalImages($additionalImages)
 echo $product->prepareProductInformation();
 ```
 
-###Product class for sendProduct implementation (Response)
+### Product class for sendProduct implementation (Response)
 
 ```json
 [
     {
         "id": 42,
         "name": "Apple Cinema 30\"",
-        "url": "http:\/\/localhost\/upload\/test",
-        "img": "http:\/\/localhost\/upload\/image\/catalog\/demo\/apple_cinema_30.jpg",
+        "url": "http://localhost/upload/test",
+        "img": "http://localhost/upload/image/catalog/demo/apple_cinema_30.jpg",
         "price": 122,
         "promo": 90,
         "brand": {
@@ -123,11 +123,11 @@ echo $product->prepareProductInformation();
             }
         },
         "images": [
-            "http:\/\/localhost\/upload\/image\/catalog\/demo\/canon_logo.jpg",
-            "http:\/\/localhost\/upload\/image\/catalog\/demo\/hp_1.jpg",
-            "http:\/\/localhost\/upload\/image\/catalog\/demo\/compaq_presario.jpg",
-            "http:\/\/localhost\/upload\/image\/catalog\/demo\/canon_eos_5d_1.jpg",
-            "http:\/\/localhost\/upload\/image\/catalog\/demo\/canon_eos_5d_2.jpg"
+            "http://localhost/upload/image/catalog/demo/canon_logo.jpg",
+            "http://localhost/upload/image/catalog/demo/hp_1.jpg",
+            "http://localhost/upload/image/catalog/demo/compaq_presario.jpg",
+            "http://localhost/upload/image/catalog/demo/canon_eos_5d_1.jpg",
+            "http://localhost/upload/image/catalog/demo/canon_eos_5d_2.jpg"
         ]
     }
 ]
