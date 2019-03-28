@@ -27,7 +27,8 @@ class Email extends AbstractRetargetingSDK
     }
 
     /**
-     * @param mixed $email
+     * @param $email
+     * @throws \Exception
      */
     public function setEmail($email)
     {
@@ -67,7 +68,7 @@ class Email extends AbstractRetargetingSDK
      */
     public function setPhone($phone)
     {
-        $phone = $this->formatIntFloatString($phone);
+        $phone = $this->getProperFormattedString($phone);
 
         $this->phone = $phone;
     }

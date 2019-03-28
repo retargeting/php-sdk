@@ -52,9 +52,7 @@ class AbstractHelper
      */
     public static function formatString($string)
     {
-        $string = stripslashes(htmlspecialchars_decode(trim(strip_tags((string)$string))));
-
-        $string = self::sanitize($string, 'string');
+        $string = trim(strip_tags((string)$string));
 
         return $string;
     }
@@ -93,7 +91,9 @@ class AbstractHelper
             "wrongUrl" => "The url has wrong format.",
             "emptyCustomerData" => "Customer data is required. Please don't leave it empty.",
             "emptyToken" => "Token is required. Please don't leave it empty.",
-            "wrongFormat" => "The array format you provided is wrong."
+            "wrongFormatToken" => "Token format is wrong.",
+            "wrongFormat" => "The array format you provided is wrong.",
+            "invalidEmail" => "Invalid email format."
         );
 
         throw new \Exception($messages[$message]);

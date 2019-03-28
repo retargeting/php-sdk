@@ -8,13 +8,15 @@
 
 namespace Retargeting;
 
+use Retargeting\Helpers\CategoryHelper;
+
 /**
  * Class Category
  * @package Retargeting
  */
 class Category extends AbstractRetargetingSDK
 {
-    protected $id = 0;
+    protected $id;
     protected $name = '';
     protected $parent = false;
     protected $breadcrumb = [];
@@ -68,7 +70,7 @@ class Category extends AbstractRetargetingSDK
      */
     public function setParent($parent)
     {
-        $parent = is_bool($parent) && !$parent ? false : $parent;
+        $parent = (is_bool($parent) && !$parent) || $parent === '' ? false : $parent;
 
         $this->parent = $parent;
     }
@@ -86,6 +88,8 @@ class Category extends AbstractRetargetingSDK
      */
     public function setBreadcrumb(array $breadcrumb)
     {
+        $breadcrumb = CategoryHelper::validateBreadcrumb($breadcrumb);
+
         $this->breadcrumb = $breadcrumb;
     }
 

@@ -255,7 +255,7 @@ class ProductTest extends TestCase
     /**
      * Check if images url have proper format and data is returned correctly
      */
-    public function test_if_product_prepare_information_return_correct_format_array()
+    public function test_if_product_additional_images_return_correct_format_array()
     {
         $this->product->setAdditionalImages([
             'https://www.example.com/image/product-test-1.png',
@@ -270,6 +270,129 @@ class ProductTest extends TestCase
             'https://www.example.com/image/product-test-3.png',
             'https://www.example.com/image/product-test-4.png',
         ]);
+    }
+
+    /**
+     * Check product prepare information returns correct array format
+     */
+    public function test_if_product_prepare_information_return_correct_format_array()
+    {
+        $brand = [
+            'id' => "8",
+            'name' => 'Apple'
+        ];
+
+        $category = [
+            [
+                "id" => "20",
+                "name" => "Desktops",
+                "parent" => false,
+                "breadcrumb" => []
+            ],
+            [
+                "id" => "28",
+                "name" => "Monitors",
+                "parent" => "25",
+                "breadcrumb" => [
+                    ["id" => "25", "name" => "Components", "parent" => false]
+                ]
+            ]
+        ];
+
+        $inventory = [
+            'variations' => true,
+            'stock' => [
+                "Small" => true,
+                "Medium" => true,
+                "Large" => true,
+                "Checkbox 1" => true,
+                "Checkbox 2" => true,
+                "Checkbox 3" => true,
+                "Checkbox 4" => true,
+                "Red" => true,
+                "Blue" => true,
+                "Green" => true,
+                "Yellow" => true
+            ]
+        ];
+
+        $additionalImages = [
+            "http://localhost/upload/image/catalog/demo/canon_logo.jpg",
+            "http://localhost/upload/image/catalog/demo/hp_1.jpg",
+            "http://localhost/upload/image/catalog/demo/compaq_presario.jpg",
+            "http://localhost/upload/image/catalog/demo/canon_eos_5d_1.jpg",
+            "http://localhost/upload/image/catalog/demo/canon_eos_5d_2.jpg"
+        ];
+
+        $product = new Product();
+        $product->setId(42);
+        $product->setName('Apple Cinema 30"');
+        $product->setUrl('http://localhost/upload/test');
+        $product->setImg('http://localhost/upload/image/catalog/demo/apple_cinema_30.jpg');
+        $product->setPrice(122);
+        $product->setPromo(90);
+        $product->setBrand($brand);
+        $product->setCategory($category);
+        $product->setInventory($inventory);
+        $product->setAdditionalImages($additionalImages);
+
+        $result = json_encode([
+                "id" => 42,
+                "name" => "Apple Cinema 30\"",
+                "url" => "http://localhost/upload/test",
+                "img" => "http://localhost/upload/image/catalog/demo/apple_cinema_30.jpg",
+                "price" => 122,
+                "promo" => 90,
+                "brand" => [
+                    "id" => "8",
+                    "name" => "Apple"
+                ],
+                "category" => [
+                    [
+                        "id" => "20",
+                        "name" => "Desktops",
+                        "parent" => false,
+                        "breadcrumb" => []
+                    ],
+                    [
+                        "id" => "28",
+                        "name" => "Monitors",
+                        "parent" => "25",
+                        "breadcrumb" => [
+                            [
+                                "id" => "25",
+                                "name" => "Components",
+                                "parent" => false
+                            ]
+                        ]
+                    ]
+                ],
+                "inventory" => [
+                    "variations" => true,
+                    "stock" => [
+                        "Small" => true,
+                        "Medium" => true,
+                        "Large" => true,
+                        "Checkbox 1" => true,
+                        "Checkbox 2" => true,
+                        "Checkbox 3" => true,
+                        "Checkbox 4" => true,
+                        "Red" => true,
+                        "Blue" => true,
+                        "Green" => true,
+                        "Yellow" => true
+                    ]
+                ],
+                "images" => [
+                    "http://localhost/upload/image/catalog/demo/canon_logo.jpg",
+                    "http://localhost/upload/image/catalog/demo/hp_1.jpg",
+                    "http://localhost/upload/image/catalog/demo/compaq_presario.jpg",
+                    "http://localhost/upload/image/catalog/demo/canon_eos_5d_1.jpg",
+                    "http://localhost/upload/image/catalog/demo/canon_eos_5d_2.jpg"
+                ]
+            ], JSON_PRETTY_PRINT);
+
+        $this->assertEquals($product->prepareProductInformationToJson(), $result);
     }
 }
 

@@ -182,7 +182,7 @@ class Order extends AbstractRetargetingSDK
      */
     public function setDiscount($discount)
     {
-        $discount = $this->formatIntFloatString($discount);
+        $discount = $this->getProperFormattedString($discount);
 
         $this->discount = $discount;
     }
@@ -200,7 +200,7 @@ class Order extends AbstractRetargetingSDK
      */
     public function setDiscountCode($discountCode)
     {
-        $discountCode = $this->formatIntFloatString($discountCode);
+        $discountCode = $this->getProperFormattedString($discountCode);
 
         $this->discountCode = $discountCode;
     }
@@ -218,7 +218,7 @@ class Order extends AbstractRetargetingSDK
      */
     public function setShipping($shipping)
     {
-        $shipping = $this->formatIntFloatString($shipping);
+        $shipping = $this->getProperFormattedString($shipping);
 
         $this->shipping = $shipping;
     }

@@ -30,6 +30,8 @@ abstract class AbstractRetargetingSDK
      */
     public function getProperFormattedString($text)
     {
+        $text = (string)$text;
+
         if ((bool)$text) {
             return trim(strip_tags(html_entity_decode(
                 html_entity_decode($text),

@@ -19,7 +19,7 @@ final class CategoryHelper extends AbstractHelper implements Helper
     {
         $categoryArr = [];
 
-        if(!empty($categoryData))
+        if(is_array($categoryData) && !empty($categoryData))
         {
             //Check if there are duplicated parent categories
             $categoryData = self::filterArrayByKey($categoryData, 'parent');
@@ -46,5 +46,37 @@ final class CategoryHelper extends AbstractHelper implements Helper
         }
 
         return $categoryArr;
+    }
+
+    /**
+     * @param $breadcrumb
+     * @return array
+     */
+    public static function validateBreadcrumb($breadcrumb)
+    {
+        $breadcrumbArr = [];
+
+        if(is_array($breadcrumb) && !empty($breadcrumb))
+        {
+            if(array_key_exists('0', $breadcrumb))
+            {
+                foreach ($breadcrumb as $value)
+                {
+                    $value['id']        = self::formatString($value['id']);
+                    $value['name']      = self::formatString($value['name']);
+                    $value['parent']    = is_bool($value['parent']) && !$value['parent'] ? false : $value['parent'];
+
+                    $breadcrumbArr[]        = $value;
+                }
+            }
+            else {
+                $breadcrumbArr['id']          = $breadcrumb['id'];
+                $breadcrumbArr['name']        = self::formatString($breadcrumb['name']);
+                $breadcrumbArr['parent']      = is_bool($breadcrumb['parent']) && !$breadcrumb['parent'] ? false : $breadcrumb['parent'];
+            }
+
+        }
+
+        return $breadcrumbArr;
     }
 }

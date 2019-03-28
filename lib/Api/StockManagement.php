@@ -141,12 +141,12 @@ class StockManagement extends AbstractRetargetingSDK
     {
         return [
             'productId' => $this->getProductId(),
-            'name' => $this->getName(),
-            'price' => $this->getPrice(),
-            'promo' => $this->getPromo(),
-            'image' => $this->getImage(),
-            'url' => $this->getUrl(),
-            'stock' => $this->isStock(),
+            'name'      => $this->getName(),
+            'price'     => $this->getPrice(),
+            'promo'     => $this->getPromo(),
+            'image'     => $this->getImage(),
+            'url'       => $this->getUrl(),
+            'stock'     => $this->isStock(),
         ];
     }
 

@@ -8,6 +8,8 @@
 
 namespace Retargeting\Helpers;
 
+use Retargeting\ApiCustomersTest;
+
 final class CustomersApiHelper extends AbstractHelper implements Helper
 {
     const CUSTOMER_DATA_KEYS = [

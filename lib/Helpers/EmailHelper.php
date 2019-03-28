@@ -11,12 +11,18 @@ namespace Retargeting\Helpers;
 final class EmailHelper extends AbstractHelper implements Helper
 {
     /**
-     * Format email properly
-     * @param mixed $email
-     * @return array|mixed
+     * Validate email
+     * @param $email
+     * @return mixed
+     * @throws \Exception
      */
     public static function validate($email)
     {
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
+            self::_throwException('invalidEmail');
+        }
+
         $email = self::sanitize($email, 'email');
 
         return $email;
