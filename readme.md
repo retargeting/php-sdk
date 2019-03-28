@@ -138,8 +138,7 @@ echo $product->prepareProductInformation();
 |	setUrl	|	URL	|	Required	|	Complete URL of the item. Must start with http:// or https://.	|
 |	setImg	|	URL	|	Required	|	Complete URL of an image of the item.	|
 |	setPrice	|	Number or text	|	Required	|	Current product price. If the product is on promotion (price is reduced) then this parameter gets the value of the price before promotion was applied to the product (old price).	|
-|	setPromo	|	Number or text	|	Optional	|	Promotional price (new price). When the product isn’t on promotion (no reduced price), send value 0.	|
-|	setStock	|	Bool (0/1)	|	Required	|	Stock of the product.For product in stock send value 1. When the product isn’t on stock send value 0.	|
+|	setPromo	|	Number or text	|	Optional	|	Promotional price (new price). When the product isn’t on promotion (no reduced price), send value 0.	|	|
 |	setBrand	|	Object	|	Required	|	Details about product brand. If the product does not belong to any brand, send false value. The object containing brand details, has the following properties: id, name.	|
 |	brand.id	|	Number or text	|	Required	|	The brand item identifier.	|
 |	brand.name	|	Text	|	Required	|	Brand name	|
