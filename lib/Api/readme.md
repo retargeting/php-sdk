@@ -2,8 +2,6 @@
 
 ## Customers
 
-
-
 Each customer object must be encrypted using Encryption Helpers. When you develop this API Endpoint, you can leave it plain.
 
 Response example (plain)
@@ -50,4 +48,30 @@ Response example (encrypted)
     "prev_page": "/retargetingtracker/customers?page=1"
 }
 
+```
+
+## Stock Management
+
+Call api stock management each time you make some changes on your products. 
+
+Request example
+
+```php
+use Retargeting/Api;
+
+$stock = new StockManagement();
+
+$stock->setProductId(123);
+$stock->setName('Canon EOS 5D');
+$stock->setPrice(900);
+$stock->setPromo(800);
+$stock->setImage('https://www.example.com/products/image/canon-eos-5d.jpg');
+$stock->setUrl('https://www.example.com/products/camera/canon-eos-5d');
+$stock->setStock(true);
+
+$api_key = 'YOUR_RTG_GENERATED_API_KEY';
+$product_data = $stock->prepareStockInfo();
+
+//Update stock each time you make some change
+$stock->updateStock($api_key, $product_data);
 ```
