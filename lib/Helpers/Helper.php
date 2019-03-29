@@ -6,8 +6,7 @@
  * Time: 11:44
  */
 
-namespace Retargeting\Helpers;
-
+namespace RetargetingSDK\Helpers;
 
 interface Helper
 {

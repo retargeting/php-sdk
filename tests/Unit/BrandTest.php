@@ -9,7 +9,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Retargeting\Brand;
+use RetargetingSDK\Brand;
 
 /**
  * Class BrandTest

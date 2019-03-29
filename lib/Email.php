@@ -6,9 +6,9 @@
  * Time: 08:03
  */
 
-namespace Retargeting;
+namespace RetargetingSDK;
 
-use Retargeting\Helpers\EmailHelper;
+use RetargetingSDK\Helpers\EmailHelper;
 
 class Email extends AbstractRetargetingSDK
 {
@@ -17,6 +17,7 @@ class Email extends AbstractRetargetingSDK
     protected $phone = '';
     protected $city = '';
     protected $sex = '';
+    protected $birthday = '';
 
     /**
      * @return mixed
@@ -110,17 +111,35 @@ class Email extends AbstractRetargetingSDK
     }
 
     /**
+     * @return string
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @param $birthday
+     * @throws \Exception
+     */
+    public function setBirthday($birthday)
+    {
+        $this->birthday = EmailHelper::validateBirthday($birthday);
+    }
+
+    /**
      * Prepare email data
      * @return string
      */
     public function prepareEmailData()
     {
         return $this->toJSON([
-            'email' => $this->getEmail(),
-            'name'  => $this->getName(),
-            'phone' => $this->getPhone(),
-            'city'  => $this->getCity(),
-            'sex'   => $this->getSex()
+            'email'     => $this->getEmail(),
+            'name'      => $this->getName(),
+            'phone'     => $this->getPhone(),
+            'city'      => $this->getCity(),
+            'sex'       => $this->getSex(),
+            'birthday'  => $this->getBirthday()
         ]);
     }
 }

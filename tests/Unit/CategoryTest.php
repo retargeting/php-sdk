@@ -9,7 +9,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Retargeting\Category;
+use RetargetingSDK\Category;
 
 /**
  * @property Category category

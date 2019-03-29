@@ -6,8 +6,9 @@
  * Time: 12:25
  */
 
-namespace Retargeting\Helpers;
-use Retargeting\Exceptions\RTGException;
+namespace RetargetingSDK\Helpers;
+
+use RetargetingSDK\Exceptions\RTGException;
 
 /**
  * Class Encryption
@@ -51,30 +52,4 @@ class EncryptionHelper
     {
         return hash(self::HASH_ALGORITHM, self::$token);
     }
-
-    /**
-     * @param int $length
-     * @param null $time
-     * @return string
-     */
-    private function generateNonce($length = 12, $time = null)
-    {
-        $time = ($time === null) ? time() : $time;
-        $nonce = gmstrftime('%Y-%m-%dT%H:%M:%SZ', $time);
-
-        if ($length < 1) {
-            return $nonce;
-        }
-
-        $length = (int)$length;
-        $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
-
-        $unique = '';
-        for ($i = 0; $i < $length; $i++) {
-            $unique .= substr($chars, (rand() % (strlen($chars))), 1);
-        }
-
-        return rtrim(strtr(base64_encode($nonce . $unique), '+/', '-_'), '=');
-    }
-
 }

@@ -6,7 +6,7 @@
  * Time: 12:46
  */
 
-namespace Retargeting\Helpers;
+namespace RetargetingSDK\Helpers;
 
 final class VariationsHelper extends AbstractHelper implements Helper
 {
@@ -30,7 +30,7 @@ final class VariationsHelper extends AbstractHelper implements Helper
             }
             else
             {
-                $variationArr['variations'] = false;
+                $variationArr['vavriations'] = false;
             }
 
             if(array_key_exists('stock', $variation)  && isset($variation['stock']))

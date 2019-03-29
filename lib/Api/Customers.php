@@ -6,7 +6,7 @@
  * Time: 12:24
  */
 
-namespace Retargeting\Api;
+namespace RetargetingSDK\Api;
 
 use Retargeting\AbstractRetargetingSDK;
 use Retargeting\Helpers\CustomersApiHelper;

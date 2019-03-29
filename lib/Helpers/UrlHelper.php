@@ -6,7 +6,7 @@
  * Time: 10:50
  */
 
-namespace Retargeting\Helpers;
+namespace RetargetingSDK\Helpers;
 
 final class UrlHelper extends AbstractHelper implements Helper
 {

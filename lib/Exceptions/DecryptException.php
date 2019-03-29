@@ -6,7 +6,7 @@
  * Time: 12:32
  */
 
-namespace Retargeting\Exceptions;
+namespace RetargetingSDK\Exceptions;
 
 /**
  * Class DecryptException

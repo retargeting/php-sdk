@@ -6,9 +6,9 @@
  * Time: 08:04
  */
 
-namespace Retargeting;
+namespace RetargetingSDK;
 
-use Retargeting\Helpers\ProductFeedHelper;
+use RetargetingSDK\Helpers\ProductFeedHelper;
 
 class ProductFeed extends AbstractRetargetingSDK
 {

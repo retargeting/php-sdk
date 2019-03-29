@@ -6,7 +6,7 @@
  * Time: 13:04
  */
 
-namespace Retargeting\Exceptions;
+namespace RetargetingSDK\Exceptions;
 
 /**
  * Class RTGException

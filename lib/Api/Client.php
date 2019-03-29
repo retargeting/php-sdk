@@ -5,7 +5,7 @@
  * Date: 2019-03-14
  * Time: 13:53
  */
-namespace Retargeting\Api;
+namespace RetargetingSDK\Api;
 
 class Client
 {
@@ -43,13 +43,13 @@ class Client
      * Property: the API request path (/api/path)
      * @var array
      */
-    private $api_path = array();
+    private $api_path = [];
 
     /**
      * Property: the API request parameters
      * @var array
      */
-    private $api_parameters = array();
+    private $api_parameters = [];
 
     /**
      * Method: constructor method for Retargeting REST API Client class
@@ -95,7 +95,7 @@ class Client
      */
     public function setResponseFormat($response_format = "json")
     {
-        if (in_array($response_format, array("json", "serial"))) {
+        if (in_array($response_format, ["json", "serial"])) {
             $this->response_format = $response_format;
         } else {
             $this->_throwException("responseFormat");
@@ -153,13 +153,14 @@ class Client
 
         $api_uri = $this->api_uri."/".$this->api_version."/".implode("/", $this->api_path).".".$this->response_format;
 
-        $this->api_path = array();
-        $api_parameters = array(
+        $this->api_path = [];
+
+        $api_parameters = [
             "api_key" => $this->api_key
-        );
+        ];
 
         $api_parameters = http_build_query(array_merge($api_parameters, $this->api_parameters));
-        $this->api_parameters = array();
+        $this->api_parameters = [];
 
         $curl_request = curl_init();
         curl_setopt($curl_request, CURLOPT_URL, $api_uri);
@@ -187,14 +188,14 @@ class Client
      */
     private function _throwException($message)
     {
-        $messages = array(
+        $messages = [
             "checkApiKey" => "You need an API KEY to use Retargeting API. Please go to your Retargeting Administration Panel to set up or check your API KEY.",
             "apiUriType" => "The API uri must be string",
             "apiVersionType" => "The API version must be a string",
             "responseFormat" => "The response format can only be json or serial (php serialize)",
             "decodingMode" => "Decoding must be boolean",
             "emptyApiPath" => "You API request is empty"
-        );
+        ];
 
         throw new \Exception($messages[$message]);
     }

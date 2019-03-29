@@ -6,7 +6,7 @@
  * Time: 7:39 PM
  */
 
-namespace Retargeting\Api;
+namespace RetargetingSDK\Api;
 
 use Retargeting\AbstractRetargetingSDK;
 use Retargeting\Exceptions\RTGException;

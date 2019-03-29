@@ -6,9 +6,10 @@
  * Time: 08:02
  */
 
-namespace Retargeting;
+namespace RetargetingSDK;
 
-use Retargeting\Helpers\CategoryHelper;
+use RetargetingSDK\Helpers\CategoryHelper;
+use RetargetingSDK\Helpers\UrlHelper;
 
 /**
  * Class Category
@@ -16,8 +17,9 @@ use Retargeting\Helpers\CategoryHelper;
  */
 class Category extends AbstractRetargetingSDK
 {
-    protected $id;
+    protected $id = '-1';
     protected $name = '';
+    protected $url = '';
     protected $parent = false;
     protected $breadcrumb = [];
 
@@ -55,6 +57,23 @@ class Category extends AbstractRetargetingSDK
         $name = $this->getProperFormattedString($name);
 
         $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param $url
+     * @throws \Exception
+     */
+    public function setUrl($url)
+    {
+        $this->url = UrlHelper::validate($url);
     }
 
     /**
@@ -102,6 +121,7 @@ class Category extends AbstractRetargetingSDK
         return $this->toJSON([
             'id'            => $this->getId(),
             'name'          => $this->getName(),
+            'url'           => $this->getUrl(),
             'parent'        => $this->getParent(),
             'breadcrumb'    => $this->getBreadcrumb()
         ]);

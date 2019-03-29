@@ -6,7 +6,7 @@
  * Time: 11:57
  */
 
-namespace Retargeting\Helpers;
+namespace RetargetingSDK\Helpers;
 
 final class BrandHelper extends AbstractHelper implements Helper
 {

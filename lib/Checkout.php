@@ -6,7 +6,7 @@
  * Time: 08:04
  */
 
-namespace Retargeting;
+namespace RetargetingSDK;
 
 class Checkout extends AbstractRetargetingSDK
 {
@@ -15,7 +15,7 @@ class Checkout extends AbstractRetargetingSDK
     /**
      * @return array
      */
-    public function getProductIds(): array
+    public function getProductIds()
     {
         return $this->productIds;
     }

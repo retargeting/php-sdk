@@ -6,7 +6,7 @@
  * Time: 10:25
  */
 
-namespace Retargeting;
+namespace RetargetingSDK;
 
 use PHPUnit\Framework\TestCase;
 use Retargeting\Api\Customers;

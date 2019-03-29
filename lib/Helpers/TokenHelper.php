@@ -6,7 +6,7 @@
  * Time: 13:40
  */
 
-namespace Retargeting\Helpers;
+namespace RetargetingSDK\Helpers;
 
 /**
  * Class Token

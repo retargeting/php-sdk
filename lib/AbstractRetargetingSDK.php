@@ -5,9 +5,10 @@
  * Date: 2019-02-19
  * Time: 07:48
  */
-namespace Retargeting;
 
-use Retargeting\Helpers\UrlHelper;
+namespace RetargetingSDK;
+
+use RetargetingSDK\Helpers\UrlHelper;
 
 /**
  * Class AbstractRetargetingSDK
@@ -49,6 +50,7 @@ abstract class AbstractRetargetingSDK
      */
     public function formatIntFloatString($value)
     {
+
         if(!is_numeric($value))
         {
             return 0;

@@ -6,9 +6,7 @@
  * Time: 11:02
  */
 
-namespace Retargeting\Helpers;
-
-use Retargeting\ApiCustomersTest;
+namespace RetargetingSDK\Helpers;
 
 final class CustomersApiHelper extends AbstractHelper implements Helper
 {

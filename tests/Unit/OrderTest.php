@@ -9,7 +9,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Retargeting\Order;
+use RetargetingSDK\Order;
 
 /**
  * @property Order order

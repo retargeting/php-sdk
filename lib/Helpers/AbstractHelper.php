@@ -6,7 +6,7 @@
  * Time: 11:17
  */
 
-namespace Retargeting\Helpers;
+namespace RetargetingSDK\Helpers;
 
 class AbstractHelper
 {
@@ -86,15 +86,16 @@ class AbstractHelper
      */
     public static function _throwException($message)
     {
-        $messages = array(
+        $messages = [
             "emptyURL" => "Url is required. Please don't leave it empty.",
             "wrongUrl" => "The url has wrong format.",
             "emptyCustomerData" => "Customer data is required. Please don't leave it empty.",
             "emptyToken" => "Token is required. Please don't leave it empty.",
             "wrongFormatToken" => "Token format is wrong.",
             "wrongFormat" => "The array format you provided is wrong.",
-            "invalidEmail" => "Invalid email format."
-        );
+            "invalidEmail" => "Invalid email format.",
+            "wrongPrice" => "Wrong price format."
+        ];
 
         throw new \Exception($messages[$message]);
     }

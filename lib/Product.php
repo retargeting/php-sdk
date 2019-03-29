@@ -5,12 +5,12 @@
  * Date: 2019-02-19
  * Time: 07:48
  */
-namespace Retargeting;
+namespace RetargetingSDK;
 
-use Retargeting\Helpers\BrandHelper;
-use Retargeting\Helpers\CategoryHelper;
-use Retargeting\Helpers\UrlHelper;
-use Retargeting\Helpers\VariationsHelper;
+use RetargetingSDK\Helpers\BrandHelper;
+use RetargetingSDK\Helpers\CategoryHelper;
+use RetargetingSDK\Helpers\UrlHelper;
+use RetargetingSDK\Helpers\VariationsHelper;
 
 class Product extends AbstractRetargetingSDK
 {

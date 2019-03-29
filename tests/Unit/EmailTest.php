@@ -9,7 +9,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Retargeting\Email;
+use RetargetingSDK\Email;
 
 /**
  * @property Email email

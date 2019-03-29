@@ -6,9 +6,9 @@
  * Time: 08:03
  */
 
-namespace Retargeting;
+namespace RetargetingSDK;
 
-use Retargeting\Helpers\EmailHelper;
+use RetargetingSDK\Helpers\EmailHelper;
 
 class Order extends AbstractRetargetingSDK
 {
@@ -20,6 +20,7 @@ class Order extends AbstractRetargetingSDK
     protected $state = '';
     protected $city = '';
     protected $address = '';
+    protected $birthday = '';
     protected $discount = '';
     protected $discountCode = '0';
     protected $shipping = '';
@@ -170,6 +171,23 @@ class Order extends AbstractRetargetingSDK
     }
 
     /**
+     * @return string
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @param $birthday
+     * @throws \Exception
+     */
+    public function setBirthday($birthday)
+    {
+        $this->birthday = EmailHelper::validateBirthday($birthday);
+    }
+
+    /**
      * @return mixed
      */
     public function getDiscount()
@@ -256,6 +274,7 @@ class Order extends AbstractRetargetingSDK
             'state'     => $this->getState(),
             'city'      => $this->getCity(),
             'address'   => $this->getAddress(),
+            'birthday'  => $this->getBirthday(),
             'discount'  => $this->getDiscount(),
             'discount_code' => $this->getDiscountCode(),
             'shipping'  => $this->getShipping(),

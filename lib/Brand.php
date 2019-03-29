@@ -6,9 +6,9 @@
  * Time: 08:03
  */
 
-namespace Retargeting;
+namespace RetargetingSDK;
 
-use Retargeting\Helpers\BrandHelper;
+use RetargetingSDK\Helpers\BrandHelper;
 
 class Brand extends AbstractRetargetingSDK
 {

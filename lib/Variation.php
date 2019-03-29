@@ -6,9 +6,9 @@
  * Time: 08:03
  */
 
-namespace Retargeting;
+namespace RetargetingSDK;
 
-use Retargeting\Helpers\CodeHelper;
+use RetargetingSDK\Helpers\CodeHelper;
 
 class Variation extends AbstractRetargetingSDK
 {
@@ -51,7 +51,7 @@ class Variation extends AbstractRetargetingSDK
     /**
      * @return array
      */
-    public function getDetails(): array
+    public function getDetails()
     {
         return $this->details;
     }

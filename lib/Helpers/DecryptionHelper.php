@@ -6,10 +6,10 @@
  * Time: 12:25
  */
 
-namespace Retargeting\Helpers;
+namespace RetargetingSDK\Helpers;
 
-use Retargeting\Exceptions\DecryptException;
-use Retargeting\Exceptions\RTGException;
+use RetargetingSDK\Exceptions\DecryptException;
+use RetargetingSDK\Exceptions\RTGException;
 
 /**
  * Class Decryption

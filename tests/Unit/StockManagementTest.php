@@ -9,7 +9,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Retargeting\Api\StockManagement;
+use RetargetingSDK\Api\StockManagement;
 
 /**
  * Class StockManagementTest
