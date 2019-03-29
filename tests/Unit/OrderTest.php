@@ -16,9 +16,6 @@ use RetargetingSDK\Order;
  */
 class OrderTest extends TestCase
 {
-    /**
-     *
-     */
     public function setUp(): void
     {
         $this->order = new Order();
@@ -30,6 +27,7 @@ class OrderTest extends TestCase
         $this->order->setState('Germany');
         $this->order->setCity('Berlin');
         $this->order->setAddress('Sample address');
+        $this->order->setBirthday('01-01-1990');
         $this->order->setDiscount(20);
         $this->order->setDiscountCode('RAX204');
         $this->order->setShipping('Sample shipping street');
@@ -109,6 +107,24 @@ class OrderTest extends TestCase
     }
 
     /**
+     * Test if birthday is not empty
+     * @throws \Exception
+     */
+    public function test_if_birthday_is_not_empty()
+    {
+        $this->assertNotNull($this->order->getBirthday());
+    }
+
+    /**
+     * Test if birthday has correct format
+     */
+    public function test_if_birthday_has_proper_format()
+    {
+        $this->assertEquals($this->order->getBirthday(), '01-01-1990');
+    }
+
+
+    /**
      * Test if order has discount
      */
     public function test_if_order_has_discount()
@@ -154,6 +170,7 @@ class OrderTest extends TestCase
             'state'     => 'Germany',
             'city'      => 'Berlin',
             'address'   => 'Sample address',
+            'birthday'   => '01-01-1990',
             'discount'  => "20",
             'discount_code' => 'RAX204',
             'shipping'  => 'Sample shipping street',

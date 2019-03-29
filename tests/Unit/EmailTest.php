@@ -19,6 +19,13 @@ class EmailTest extends TestCase
     public function setUp(): void
     {
         $this->email = new Email();
+
+        $this->email->setEmail('john.doe@mail.com');
+        $this->email->setName('John Doe');
+        $this->email->setPhone('(298) 407-4029');
+        $this->email->setCity('Berlin');
+        $this->email->setSex(0);
+        $this->email->setBirthday('20-02-1960');
     }
 
     /**
@@ -26,8 +33,6 @@ class EmailTest extends TestCase
      */
     public function test_if_email_is_not_empty()
     {
-        $this->email->setEmail('john.doe@mail.com');
-
         $this->assertNotNull($this->email->getEmail());
     }
 
@@ -36,8 +41,6 @@ class EmailTest extends TestCase
      */
     public function test_if_email_has_proper_format()
     {
-        $this->email->setEmail('john.doe@mail.com');
-
         $this->assertRegExp('/^.+\@\S+\.\S+$/', $this->email->getEmail());
     }
 
@@ -46,8 +49,6 @@ class EmailTest extends TestCase
      */
     public function test_if_name_is_not_empty()
     {
-        $this->email->setName('John Doe');
-
         $this->assertNotNull($this->email->getName());
     }
 
@@ -56,8 +57,6 @@ class EmailTest extends TestCase
      */
     public function test_if_name_is_string()
     {
-        $this->email->setName('John Doe');
-
         $this->assertIsString($this->email->getName());
     }
 
@@ -66,8 +65,6 @@ class EmailTest extends TestCase
      */
     public function test_if_phone_is_not_empty()
     {
-        $this->email->setPhone('(298) 407-4029');
-
         $this->assertNotNull($this->email->getPhone());
     }
 
@@ -76,19 +73,7 @@ class EmailTest extends TestCase
      */
     public function test_if_phone_is_string()
     {
-        $this->email->setPhone('(298) 407-4029');
-
         $this->assertIsString($this->email->getPhone());
-    }
-
-    /**
-     * Test if phone has proper format
-     */
-    public function test_if_phone_has_proper_format()
-    {
-        $this->email->setPhone('   (298) 407-4029   ');
-
-        $this->assertEquals($this->email->getPhone(), '(298) 407-4029');
     }
 
     /**
@@ -96,8 +81,6 @@ class EmailTest extends TestCase
      */
     public function test_if_city_is_not_empty()
     {
-        $this->email->setCity('Berlin');
-
         $this->assertNotNull($this->email->getCity());
     }
 
@@ -106,8 +89,6 @@ class EmailTest extends TestCase
      */
     public function test_if_city_is_string()
     {
-        $this->email->setCity('Berlin');
-
         $this->assertIsString($this->email->getCity());
     }
 
@@ -116,8 +97,6 @@ class EmailTest extends TestCase
      */
     public function test_if_city_has_proper_format()
     {
-        $this->email->setCity('Berlin ');
-
         $this->assertEquals($this->email->getCity(), 'Berlin');
     }
 
@@ -126,8 +105,6 @@ class EmailTest extends TestCase
      */
     public function test_if_sex_is_not_empty()
     {
-        $this->email->setSex(0);
-
         $this->assertNotNull($this->email->getSex());
     }
 
@@ -136,9 +113,24 @@ class EmailTest extends TestCase
      */
     public function test_if_sex_is_boolean()
     {
-        $this->email->setSex(1);
-
         $this->assertIsNumeric($this->email->getSex());
+    }
+
+    /**
+     * Test if birthday is not empty
+     * @throws \Exception
+     */
+    public function test_if_birthday_is_not_empty()
+    {
+        $this->assertNotNull($this->email->getBirthday());
+    }
+
+    /**
+     * Test if birthday has correct format
+     */
+    public function test_if_birthday_has_proper_format()
+    {
+        $this->assertEquals($this->email->getBirthday(), '20-02-1960');
     }
 
     /**
@@ -147,19 +139,14 @@ class EmailTest extends TestCase
      */
     public function test_if_prepare_email_data_has_proper_format()
     {
-        $this->email->setEmail('john.doe@mail.com');
-        $this->email->setName('John Doe');
-        $this->email->setPhone('(298) 407-4029');
-        $this->email->setCity('Berlin');
-        $this->email->setSex(0);
-
         $this->assertEquals($this->email->prepareEmailData(),
             json_encode([
                 'email' => 'john.doe@mail.com',
                 'name'  => 'John Doe',
                 'phone' => '(298) 407-4029',
                 'city'  => 'Berlin',
-                'sex'   => 0
+                'sex'   => 0,
+                'birthday'   => '20-02-1960'
             ], JSON_PRETTY_PRINT)
         );
     }

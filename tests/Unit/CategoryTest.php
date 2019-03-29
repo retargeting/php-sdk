@@ -23,7 +23,7 @@ class CategoryTest extends TestCase
         $this->category->setId(89);
         $this->category->setName('Shoes');
         $this->category->setParent('');
-
+        $this->category->setUrl('https://www.example.com/desktops/monitors');
         $this->category->setBreadcrumb([
             ["id" => 21, "name" => "Sneakers", "parent" => 20],
             ["id" => 20, "name" => "Shoes", "parent" => false]
@@ -44,6 +44,22 @@ class CategoryTest extends TestCase
     public function testIfCategoryHasName()
     {
         $this->assertNotNull($this->category->getName());
+    }
+
+    /**
+     * Test if url is not empty
+     */
+    public function testIfUrlIsNotEmpty()
+    {
+        $this->assertNotNull($this->category->getUrl());
+    }
+
+    /**
+     * Test if url has correct format
+     */
+    public function testIfUrlHasProperFormat()
+    {
+        $this->assertEquals($this->category->getUrl(), 'https://www.example.com/desktops/monitors');
     }
 
     /**
@@ -109,6 +125,7 @@ class CategoryTest extends TestCase
         $this->assertEquals($this->category->prepareCategoryData(), json_encode([
             'id' => '89',
             'name' => 'Shoes',
+            'url' => 'https://www.example.com/desktops/monitors',
             'parent' => false,
             'breadcrumb' => [
                 ["id" => '21', "name" => "Sneakers", "parent" => 20],

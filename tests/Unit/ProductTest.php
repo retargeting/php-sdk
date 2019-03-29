@@ -9,6 +9,7 @@
 namespace RetargetingSDK;
 
 use PHPUnit\Framework\TestCase;
+use RetargetingSDK\Product;
 
 /**
  * @property Product product
