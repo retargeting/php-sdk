@@ -9,6 +9,7 @@ namespace RetargetingSDK;
 
 use RetargetingSDK\Helpers\BrandHelper;
 use RetargetingSDK\Helpers\CategoryHelper;
+use RetargetingSDK\Helpers\ProductFeedHelper;
 use RetargetingSDK\Helpers\UrlHelper;
 use RetargetingSDK\Helpers\VariationsHelper;
 
@@ -108,11 +109,12 @@ class Product extends AbstractRetargetingSDK
     }
 
     /**
-     * @param mixed $price
+     * @param $price
+     * @throws \Exception
      */
     public function setPrice($price)
     {
-        $price = $this->formatIntFloatString($price);
+        $price = ProductFeedHelper::formatPrice($price);
 
         $this->price = $price;
     }
@@ -126,13 +128,14 @@ class Product extends AbstractRetargetingSDK
     }
 
     /**
-     * @param float $promo
+     * @param $promo
+     * @throws \Exception
      */
     public function setPromo($promo)
     {
         if($promo > 0 && $promo < $this->getPrice())
         {
-            $promo = $this->formatIntFloatString($promo);
+            $promo = ProductFeedHelper::formatPrice($promo);
         }
         else
         {

@@ -20,7 +20,7 @@ class Customers extends AbstractRetargetingSDK
     protected $token;
     protected $data = [];
     protected $currentPage = 1;
-    protected $lastPage = 20;
+    protected $lastPage = '';
     protected $nextPage = '';
     protected $prevPage = '';
 
