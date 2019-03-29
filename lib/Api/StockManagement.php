@@ -8,8 +8,8 @@
 
 namespace RetargetingSDK\Api;
 
-use Retargeting\AbstractRetargetingSDK;
-use Retargeting\Exceptions\RTGException;
+use RetargetingSDK\AbstractRetargetingSDK;
+use RetargetingSDK\Exceptions\RTGException;
 
 class StockManagement extends AbstractRetargetingSDK
 {

@@ -8,8 +8,8 @@
 
 namespace RetargetingSDK\Api;
 
-use Retargeting\AbstractRetargetingSDK;
-use Retargeting\Helpers\CustomersApiHelper;
+use RetargetingSDK\AbstractRetargetingSDK;
+use RetargetingSDK\Helpers\CustomersApiHelper;
 
 /**
  * Class Customers
