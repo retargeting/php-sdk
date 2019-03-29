@@ -9,9 +9,9 @@
 namespace RetargetingSDK;
 
 use PHPUnit\Framework\TestCase;
-use Retargeting\Api\Customers;
-use Retargeting\Helpers\DecryptionHelper;
-use Retargeting\Helpers\EncryptionHelper;
+use RetargetingSDK\Api\Customers;
+use RetargetingSDK\Helpers\DecryptionHelper;
+use RetargetingSDK\Helpers\EncryptionHelper;
 
 /**
  * Class ApiCustomersTest
