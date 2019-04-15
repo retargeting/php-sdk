@@ -6,10 +6,38 @@
  * Time: 08:04
  */
 
-namespace Retargeting;
+namespace RetargetingSDK;
 
-
-class Checkout
+class Checkout extends AbstractRetargetingSDK
 {
+    protected $productIds = [];
 
+    /**
+     * @return array
+     */
+    public function getProductIds()
+    {
+        return $this->productIds;
+    }
+
+    /**
+     * @param array $productIds
+     */
+    public function setProductIds(array $productIds)
+    {
+        $productIds = is_array($productIds) ? $productIds : (array)$productIds;
+
+        $this->productIds = $productIds;
+    }
+
+    /**
+     * Prepare checkout ids
+     * @return string
+     */
+    public function prepareCheckoutIds()
+    {
+        return $this->toJSON(
+            $this->getProductIds()
+        );
+    }
 }
