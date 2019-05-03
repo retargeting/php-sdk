@@ -67,7 +67,7 @@ $product->setCategory($category);
 $product->setInventory($inventory);
 $product->setAdditionalImages($additionalImages)
 
-echo $product->prepareProductInformation();
+echo $product->getData();
 ```
 
 #### Sample response
