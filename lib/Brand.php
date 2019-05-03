@@ -48,14 +48,23 @@ class Brand extends AbstractRetargetingSDK
     }
 
     /**
-     * Prepare brand information
-     * @return string
+     * @param bool $encoded
+     * @return array|bool|\stdClass|string|null
      */
-    public function prepareBrandInformation()
+    public function getData($encoded = true)
     {
-        return $this->toJSON(BrandHelper::validate([
+        $brand = BrandHelper::validate([
             'id' => $this->getId(),
             'name' => $this->getProperFormattedString($this->getName())
-        ]));
+        ]);
+
+        if(!empty($brand))
+        {
+            return $encoded ? $this->toJSON($brand) : $brand;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

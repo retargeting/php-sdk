@@ -30,7 +30,7 @@ final class CategoryHelper extends AbstractHelper implements Helper
                 $categoryArr['id']          = $categoryData[0]['id'];
                 $categoryArr['name']        = self::formatString($categoryData[0]['name']);
                 $categoryArr['parent']      = false;
-                $categoryArr['breadcrumb']  = [];
+                $categoryArr['breadcrumb']  = empty($categoryData[0]['breadcrumb']) ? [] : self::validateBreadcrumb($categoryData[0]['breadcrumb']);
             }
             //Check if there are nested categories
             else if (count($categoryData) >= 2)

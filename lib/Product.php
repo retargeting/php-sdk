@@ -218,13 +218,12 @@ class Product extends AbstractRetargetingSDK
     }
 
     /**
-     * Prepare product info to array
-     * @return array
-     * @throws \Exception
+     * @param bool $encoded
+     * @return array|string
      */
-    public function prepareProductInformation()
+    public function getData($encoded = true)
     {
-        return [
+        $product = [
             'id'        => $this->getId(),
             'name'      => $this->getName(),
             'url'       => $this->getUrl(),
@@ -236,28 +235,7 @@ class Product extends AbstractRetargetingSDK
             'inventory' => $this->getInventory(),
             'images'    => $this->getAdditionalImages()
         ];
-    }
 
-    /**
-     * Prepare product info to array
-     * @return string
-     * @throws \Exception
-     */
-    public function prepareProductInformationToJson()
-    {
-        $data = self::prepareProductInformation();
-
-        return $this->toJSON([
-            'id'        => $data['id'],
-            'name'      => $data['name'],
-            'url'       => $data['url'],
-            'img'       => $data['img'],
-            'price'     => $data['price'],
-            'promo'     => $data['promo'],
-            'brand'     => $data['brand'],
-            'category'  => $data['category'],
-            'inventory' => $data['inventory'],
-            'images'    => $data['images']
-        ]);
+        return $encoded ? $this->toJSON($product) : $product;
     }
 }

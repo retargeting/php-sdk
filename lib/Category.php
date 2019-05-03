@@ -113,17 +113,19 @@ class Category extends AbstractRetargetingSDK
     }
 
     /**
-     * Prepare category data
-     * @return string
+     * @param bool $encoded
+     * @return array|string
      */
-    public function prepareCategoryData()
+    public function getData($encoded = true)
     {
-        return $this->toJSON([
+        $category = [
             'id'            => $this->getId(),
             'name'          => $this->getName(),
             'url'           => $this->getUrl(),
             'parent'        => $this->getParent(),
             'breadcrumb'    => $this->getBreadcrumb()
-        ]);
+        ];
+
+        return $encoded ? $this->toJSON($category) : $category;
     }
 }
