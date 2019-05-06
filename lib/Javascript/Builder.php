@@ -23,6 +23,48 @@ class Builder extends AbstractCredentials
     private $items = [];
 
     /**
+     * @var string
+     */
+    private $addToCardId;
+
+    /**
+     * @var string
+     */
+    private $priceLabelId;
+
+    /**
+     * @return string
+     */
+    public function getAddToCardId()
+    {
+        return $this->addToCardId;
+    }
+
+    /**
+     * @param string $addToCardId
+     */
+    public function setAddToCardId($addToCardId)
+    {
+        $this->addToCardId = $addToCardId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPriceLabelId()
+    {
+        return $this->priceLabelId;
+    }
+
+    /**
+     * @param string $priceLabelId
+     */
+    public function setPriceLabelId($priceLabelId)
+    {
+        $this->priceLabelId = $priceLabelId;
+    }
+
+    /**
      * @param Email $email
      * @return Builder
      */
@@ -221,8 +263,23 @@ class Builder extends AbstractCredentials
 
         if($this->hasTrackingApiKey())
         {
-            $code  = 'var ra = document.createElement("script"); ra.type ="text/javascript"; ra.async = true; ra.src = ("https:" ==';
-            $code .= 'document.location.protocol ? "https://" : "http://") + "' . $this->getTrackingApiKey() . '" + ra_key + ".js";';
+            $raParams = [];
+
+            if(!empty($this->addToCardId))
+            {
+                $raParams['add_to_cart_button_id'] = $this->addToCardId;
+            }
+
+            if(!empty($this->priceLabelId))
+            {
+                $raParams['price_label_id'] = $this->priceLabelId;
+            }
+
+            $code  = '(function(){';
+            $code .= 'ra_key = "' . $this->getTrackingApiKey() . '";';
+            $code .= 'ra_params = ' . json_encode($raParams) . ';';
+            $code .= 'var ra = document.createElement("script"); ra.type = "text/javascript"; ra.async = true; ra.src = ';
+            $code .= '"https://tracking.retargeting.biz/v3/rajs/' . $this->getTrackingApiKey() . '.js";';
             $code .= 'var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ra,s);})();';
         }
 
