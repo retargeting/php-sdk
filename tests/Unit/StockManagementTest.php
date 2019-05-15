@@ -41,14 +41,6 @@ class StockManagementTest extends TestCase
         $this->stock->setStock(true);
     }
 
-//    protected $productId;
-//    protected $name;
-//    protected $price;
-//    protected $promo;
-//    protected $image;
-//    protected $url;
-//    protected $stock = false;
-
     /**
      * Test if stock management has product Id
      */

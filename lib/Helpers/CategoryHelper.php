@@ -37,6 +37,8 @@ final class CategoryHelper extends AbstractHelper implements Helper
             {
                 foreach($categoryData as $category)
                 {
+                    $category['breadcrumb'] = self::filterArrayByKey($category['breadcrumb'], 'parent');
+
                     $category['name'] = self::formatString($category['name']);
                     $category['breadcrumb'] = is_array($category['breadcrumb']) ? $category['breadcrumb'] : (array)$category['breadcrumb'];
 
