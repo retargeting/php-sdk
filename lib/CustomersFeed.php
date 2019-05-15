@@ -82,7 +82,7 @@ class CustomersFeed extends AbstractRetargetingSDK
      */
     public function addCustomer($customer, $encrypt = true)
     {
-        $this->customers[] = $encrypt ? $this->encryption::encrypt($customer) : $customer;
+        $this->customers[] = $encrypt ? $this->encryption->encrypt($customer) : $customer;
     }
 
     /**

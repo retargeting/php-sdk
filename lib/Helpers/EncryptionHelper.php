@@ -8,39 +8,46 @@
 
 namespace RetargetingSDK\Helpers;
 
-use RetargetingSDK\Exceptions\RTGException;
-
 /**
  * Class Encryption
  * @package Retargeting\Helpers
  */
 class EncryptionHelper
 {
+    /**
+     * Encryption method
+     */
     const METHOD = "AES-256-CBC";
+
+    /**
+     * Hash algorithm
+     */
     const HASH_ALGORITHM = 'sha512';
 
-    public static $token;
+    /**
+     * @var string
+     */
+    protected $token;
 
     /**
      * EncryptionHelper constructor.
      * @param $token
-     * @throws RTGException
      */
     public function __construct($token)
     {
-        self::$token    = $token;
+        $this->token = $token;
     }
 
     /**
-     * @param $data
+     * @param mixed $data
      * @return string
      */
-    public static function encrypt($data)
+    public function encrypt($data)
     {
         $ivSize = openssl_cipher_iv_length(self::METHOD);
         $iv = openssl_random_pseudo_bytes($ivSize);
 
-        $encrypted = openssl_encrypt($data, self::METHOD, self::createKey(), OPENSSL_RAW_DATA, $iv);
+        $encrypted = openssl_encrypt($data, self::METHOD, $this->createKey(), OPENSSL_RAW_DATA, $iv);
 
         return rtrim(strtr(base64_encode($iv . $encrypted), '+/', '-_'), '=');
     }
@@ -48,8 +55,8 @@ class EncryptionHelper
     /**
      * @return string
      */
-    private static function createKey()
+    private function createKey()
     {
-        return hash(self::HASH_ALGORITHM, self::$token);
+        return hash(self::HASH_ALGORITHM, $this->token);
     }
 }
