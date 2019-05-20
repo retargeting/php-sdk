@@ -117,6 +117,15 @@ class Builder extends AbstractCredentials
      */
     public function addToCart($productId, $quantity, Variation $variation)
     {
+        if (empty($variation->getCode()))
+        {
+            $variation = [];
+        }
+        else
+        {
+            $variation = $variation->getData(false);
+        }
+
         return $this->addItem(
             new Item\CartAdd($productId, $quantity, $variation)
         );
@@ -130,6 +139,15 @@ class Builder extends AbstractCredentials
      */
     public function removeFromCart($productId, $quantity, Variation $variation)
     {
+        if (empty($variation->getCode()))
+        {
+            $variation = [];
+        }
+        else
+        {
+            $variation = $variation->getData(false);
+        }
+
         return $this->addItem(
             new Item\CartRemove($productId, $quantity, $variation)
         );

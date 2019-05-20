@@ -12,10 +12,17 @@ class CartAdd extends AbstractItem
      * CartAdd constructor.
      * @param $productId
      * @param $quantity
-     * @param $variation
+     * @param array $variation
      */
-    public function __construct($productId, $quantity, $variation)
+    public function __construct($productId, $quantity, array $variation)
     {
-        // TO DO
+        $addToCart = [
+            'product_id' => $productId,
+            'quantity'   => $quantity,
+            'variation'  => !empty($variation) ? $variation : false
+        ];
+
+        $this->setParams('_ra.addToCartInfo = ' . json_encode($addToCart) . ';');
+        $this->setMethod('_ra.addToCart(_ra.addToCartInfo.product_id, _ra.addToCartInfo.quantity, _ra.addToCartInfo.variation);');
     }
 }
