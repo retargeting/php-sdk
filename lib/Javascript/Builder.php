@@ -321,10 +321,11 @@ class Builder extends AbstractCredentials
 
     /**
      * @param bool $minify
+     * @param bool $includeScriptTag
      * @return string
      * @throws \RetargetingSDK\Exceptions\RTGException
      */
-    public function generate($minify = true)
+    public function generate($minify = true, $includeScriptTag = true)
     {
         $outputParams  = 'var _ra = _ra || {};';
         $outputMethods = '';
@@ -340,7 +341,7 @@ class Builder extends AbstractCredentials
             $outputMethods = 'if (_ra.ready !== undefined) { ' . $outputMethods . ' }';
         }
 
-        $output  = '<script type="text/javascript">';
+        $output  = $includeScriptTag ? '<script type="text/javascript">' : '';
 
         if($minify)
         {
@@ -351,7 +352,7 @@ class Builder extends AbstractCredentials
             $output .= ($outputParams . $outputMethods);
         }
 
-        $output .= '</script>';
+        $output .= $includeScriptTag ? '</script>' : '';
 
         return $output;
     }

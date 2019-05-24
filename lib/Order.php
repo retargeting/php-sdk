@@ -24,6 +24,8 @@ class Order extends AbstractRetargetingSDK
     protected $discount = '';
     protected $discountCode = '0';
     protected $shipping = '';
+    protected $rebates = 0;
+    protected $fees = 0;
     protected $total = 0;
     protected $products = [];
 
@@ -243,6 +245,38 @@ class Order extends AbstractRetargetingSDK
     }
 
     /**
+     * @return int
+     */
+    public function getRebates()
+    {
+        return $this->rebates;
+    }
+
+    /**
+     * @param $rebates
+     */
+    public function setRebates($rebates)
+    {
+        $this->rebates = $rebates;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFees()
+    {
+        return $this->fees;
+    }
+
+    /**
+     * @param $fees
+     */
+    public function setFees($fees)
+    {
+        $this->fees = $fees;
+    }
+
+    /**
      * @return mixed
      */
     public function getTotal()
@@ -311,6 +345,8 @@ class Order extends AbstractRetargetingSDK
             'discount'      => $this->getDiscount(),
             'discount_code' => $this->getDiscountCode(),
             'shipping'      => $this->getShipping(),
+            'rebates'       => $this->getRebates(),
+            'fees'          => $this->getFees(),
             'total'         => $this->getTotal()
         ];
 
