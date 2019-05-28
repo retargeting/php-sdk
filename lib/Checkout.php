@@ -31,13 +31,13 @@ class Checkout extends AbstractRetargetingSDK
     }
 
     /**
-     * Prepare checkout ids
-     * @return string
+     * @param bool $encoded
+     * @return array|string
      */
-    public function prepareCheckoutIds()
+    public function getData($encoded = true)
     {
-        return $this->toJSON(
-            $this->getProductIds()
-        );
+        $checkout = $this->getProductIds();
+
+        return $encoded ? $this->toJSON($checkout) : $checkout;
     }
 }

@@ -8,8 +8,6 @@
 
 namespace RetargetingSDK;
 
-use RetargetingSDK\Helpers\CodeHelper;
-
 class Variation extends AbstractRetargetingSDK
 {
     protected $code = '';
@@ -35,7 +33,7 @@ class Variation extends AbstractRetargetingSDK
     /**
      * @return int
      */
-    public function getStock(): int
+    public function getStock()
     {
         return $this->stock;
     }
@@ -43,7 +41,7 @@ class Variation extends AbstractRetargetingSDK
     /**
      * @param int $stock
      */
-    public function setStock(int $stock)
+    public function setStock($stock)
     {
         $this->stock = $stock;
     }
@@ -65,15 +63,17 @@ class Variation extends AbstractRetargetingSDK
     }
 
     /**
-     * Prepare variation data
-     * @return string
+     * @param bool $encoded
+     * @return array|string
      */
-    public function prepareVariationInfo()
+    public function getData($encoded = true)
     {
-        return $this->toJSON([
+        $variation = [
             'code'      => $this->getCode(),
             'stock'     => (bool)$this->getStock(),
             'details'   => $this->getDetails()
-        ]);
+        ];
+
+        return $encoded ? $this->toJSON($variation) : $variation;
     }
 }

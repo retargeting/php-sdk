@@ -128,18 +128,20 @@ class Email extends AbstractRetargetingSDK
     }
 
     /**
-     * Prepare email data
-     * @return string
+     * @param bool $encoded
+     * @return array|string
      */
-    public function prepareEmailData()
+    public function getData($encoded = true)
     {
-        return $this->toJSON([
+        $data = [
             'email'     => $this->getEmail(),
             'name'      => $this->getName(),
             'phone'     => $this->getPhone(),
             'city'      => $this->getCity(),
             'sex'       => $this->getSex(),
             'birthday'  => $this->getBirthday()
-        ]);
+        ];
+
+        return $encoded ? $this->toJSON($data) : $data;
     }
 }

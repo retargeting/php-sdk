@@ -2,16 +2,29 @@
 
 namespace RetargetingSDK;
 
+use RetargetingSDK\Helpers\CustomersApiHelper;
+use RetargetingSDK\Helpers\EncryptionHelper;
+
 /**
- * Class ProductFeed
- * @package RetargetingSDK\Api
+ * Class CustomersFeed
+ * @package RetargetingSDK
  */
-class ProductFeed extends AbstractRetargetingSDK
+class CustomersFeed extends AbstractRetargetingSDK
 {
+    /**
+     * @var mixed
+     */
+    protected $token;
+
+    /**
+     * @var EncryptionHelper
+     */
+    protected $encryption;
+
     /**
      * @var array
      */
-    protected $products = [];
+    protected $customers = [];
 
     /**
      * @var int
@@ -34,27 +47,58 @@ class ProductFeed extends AbstractRetargetingSDK
     protected $prevPage = '';
 
     /**
-     * @param $product
+     * Customers constructor.
+     * @param $token
+     * @throws \Exception
      */
-    public function addProduct($product)
+    public function __construct($token)
     {
-        $this->products[] = $product;
+        $token = CustomersApiHelper::getToken($token);
+
+        $this->token = $token;
+
+        $this->encryption = new EncryptionHelper($token);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param mixed $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * @param $customer
+     * @param bool $encrypt
+     */
+    public function addCustomer($customer, $encrypt = true)
+    {
+        $this->customers[] = $encrypt ? $this->encryption->encrypt($customer) : $customer;
     }
 
     /**
      * @return array
      */
-    public function getProducts()
+    public function getCustomers()
     {
-        return $this->products;
+        return $this->customers;
     }
 
     /**
-     * @param array $products
+     * @param array $customers
      */
-    public function setProducts($products)
+    public function setCustomers($customers)
     {
-        $this->products = $products;
+        $this->customers = $customers;
     }
 
     /**
@@ -128,7 +172,7 @@ class ProductFeed extends AbstractRetargetingSDK
     public function getData($encoded = true)
     {
         $data = [
-            'data'          => $this->getProducts(),
+            'data'          => $this->getCustomers(),
             "current_page"  => $this->getCurrentPage(),
             "last_page"     => $this->getLastPage(),
             "next_page"     => $this->getNextPage(),

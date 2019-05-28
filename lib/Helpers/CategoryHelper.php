@@ -27,16 +27,25 @@ final class CategoryHelper extends AbstractHelper implements Helper
             //Get the first category if there is only one
             if(count($categoryData) < 2)
             {
-                $categoryArr['id']          = $categoryData[0]['id'];
+                $categoryArr[] = [
+                    'id'         => $categoryData[0]['id'],
+                    'name'       => self::formatString($categoryData[0]['name']),
+                    'parent'     => false,
+                    'breadcrumb' => empty($categoryData[0]['breadcrumb']) ? [] : self::validateBreadcrumb($categoryData[0]['breadcrumb'])
+                ];
+
+                /*$categoryArr['id']          = $categoryData[0]['id'];
                 $categoryArr['name']        = self::formatString($categoryData[0]['name']);
                 $categoryArr['parent']      = false;
-                $categoryArr['breadcrumb']  = [];
+                $categoryArr['breadcrumb']  = empty($categoryData[0]['breadcrumb']) ? [] : self::validateBreadcrumb($categoryData[0]['breadcrumb']);*/
             }
             //Check if there are nested categories
             else if (count($categoryData) >= 2)
             {
                 foreach($categoryData as $category)
                 {
+                    $category['breadcrumb'] = self::filterArrayByKey($category['breadcrumb'], 'parent');
+
                     $category['name'] = self::formatString($category['name']);
                     $category['breadcrumb'] = is_array($category['breadcrumb']) ? $category['breadcrumb'] : (array)$category['breadcrumb'];
 

@@ -24,7 +24,10 @@ class Order extends AbstractRetargetingSDK
     protected $discount = '';
     protected $discountCode = '0';
     protected $shipping = '';
+    protected $rebates = 0;
+    protected $fees = 0;
     protected $total = 0;
+    protected $products = [];
 
     /**
      * @return mixed
@@ -242,6 +245,38 @@ class Order extends AbstractRetargetingSDK
     }
 
     /**
+     * @return int
+     */
+    public function getRebates()
+    {
+        return $this->rebates;
+    }
+
+    /**
+     * @param $rebates
+     */
+    public function setRebates($rebates)
+    {
+        $this->rebates = $rebates;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFees()
+    {
+        return $this->fees;
+    }
+
+    /**
+     * @param $fees
+     */
+    public function setFees($fees)
+    {
+        $this->fees = $fees;
+    }
+
+    /**
      * @return mixed
      */
     public function getTotal()
@@ -260,25 +295,70 @@ class Order extends AbstractRetargetingSDK
     }
 
     /**
-     * Prepare order information
-     * @return string
+     * @param $id
+     * @param $qnt
+     * @param $price
+     * @param string $variationCode
      */
-    public function prepareOrderInformation()
+    public function setProduct($id, $qnt, $price, $variationCode = '')
     {
-        return $this->toJSON([
-            'order_no'  => $this->getOrderNo(),
-            'lastname'  => $this->getLastName(),
-            'firstname' => $this->getFirstName(),
-            'email'     => $this->getEmail(),
-            'phone'     => $this->getPhone(),
-            'state'     => $this->getState(),
-            'city'      => $this->getCity(),
-            'address'   => $this->getAddress(),
-            'birthday'  => $this->getBirthday(),
-            'discount'  => $this->getDiscount(),
+        $this->products[] = [
+            'id'             => $id,
+            'quantity'       => $qnt,
+            'price'          => $this->formatIntFloatString($price),
+            'variation_code' => !empty($variationCode) ? $variationCode : ''
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param array $products
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+    }
+
+    /**
+     * @param bool $encoded
+     * @return array|string
+     */
+    public function getData($encoded = true)
+    {
+        $order = [
+            'order_no'      => $this->getOrderNo(),
+            'lastname'      => $this->getLastName(),
+            'firstname'     => $this->getFirstName(),
+            'email'         => $this->getEmail(),
+            'phone'         => $this->getPhone(),
+            'state'         => $this->getState(),
+            'city'          => $this->getCity(),
+            'address'       => $this->getAddress(),
+            'birthday'      => $this->getBirthday(),
+            'discount'      => $this->getDiscount(),
             'discount_code' => $this->getDiscountCode(),
-            'shipping'  => $this->getShipping(),
-            'total'     => $this->getTotal()
-        ]);
+            'shipping'      => $this->getShipping(),
+            'rebates'       => $this->getRebates(),
+            'fees'          => $this->getFees(),
+            'total'         => $this->getTotal()
+        ];
+
+        return $encoded ? $this->toJSON($order) : $order;
+    }
+
+    /**
+     * @param bool $encoded
+     * @return array|string
+     */
+    public function getProductsData($encoded = true)
+    {
+        return $encoded ? $this->toJSON($this->getProducts()) : $this->getProducts();
     }
 }
