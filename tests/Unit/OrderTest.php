@@ -174,9 +174,11 @@ class OrderTest extends TestCase
             'discount'  => "20",
             'discount_code' => 'RAX204',
             'shipping'  => 'Sample shipping street',
+            'rebates'   => 0,
+            'fees'      => 0,
             'total'     => 396
         ];
 
-        $this->assertEquals($this->order->prepareOrderInformation(), json_encode($order, JSON_PRETTY_PRINT));
+        $this->assertEquals($this->order->getData(), json_encode($order, JSON_PRETTY_PRINT));
     }
 }

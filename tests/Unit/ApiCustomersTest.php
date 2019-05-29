@@ -10,8 +10,6 @@ namespace RetargetingSDK;
 
 use PHPUnit\Framework\TestCase;
 use RetargetingSDK\Api\Customers;
-use RetargetingSDK\Helpers\DecryptionHelper;
-use RetargetingSDK\Helpers\EncryptionHelper;
 
 /**
  * Class ApiCustomersTest
@@ -22,6 +20,9 @@ class ApiCustomersTest extends TestCase
 {
     const TOKEN = "df2ce5cba06265db9bffeb6caf8d9fcf46a5a1712f774bca67535a82bdcf1955";
 
+    /**
+     * @var array
+     */
     protected $customer = [
         'firstName' => 'John',
         'lastName' => 'Doe',
@@ -70,26 +71,6 @@ class ApiCustomersTest extends TestCase
         $this->assertNotNull($this->customersInstance->getLastPage());
         $this->assertNotNull($this->customersInstance->getNextPage());
         $this->assertNotNull($this->customersInstance->getPrevPage());
-    }
-
-    /**
-     * Test if token is type of hashed
-     * @throws Exceptions\DecryptException
-     * @throws Exceptions\RTGException
-     */
-    public function testIfCustomerDataIsHashed()
-    {
-        $encryption = new EncryptionHelper(self::TOKEN);
-
-        $data = $encryption->encrypt(json_encode($this->customer, JSON_PRETTY_PRINT));
-
-        $this->customersInstance->setData($data);
-
-        $decryption = new DecryptionHelper(self::TOKEN);
-
-        $decryptedData = $decryption->decrypt($this->customersInstance->getData());
-
-        $this->assertEquals(json_decode($decryptedData, JSON_PRETTY_PRINT), $this->customer);
     }
 
     /**

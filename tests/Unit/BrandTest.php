@@ -49,7 +49,7 @@ class BrandTest extends TestCase
         $this->brand->setId(23);
         $this->brand->setName('Apple');
 
-        $this->assertJson($this->brand->prepareBrandInformation());
+        $this->assertJson($this->brand->getData());
     }
 
     /**
@@ -60,6 +60,6 @@ class BrandTest extends TestCase
          $this->brand->setId(9000);
          $this->brand->setName('Adidas');
 
-         $this->assertEquals($this->brand->prepareBrandInformation(), json_encode(['id' => 9000, 'name' => 'Adidas'], JSON_PRETTY_PRINT));
+         $this->assertEquals($this->brand->getData(), json_encode(['id' => 9000, 'name' => 'Adidas'], JSON_PRETTY_PRINT));
      }
 }
