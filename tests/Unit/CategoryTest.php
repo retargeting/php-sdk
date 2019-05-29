@@ -122,7 +122,7 @@ class CategoryTest extends TestCase
      */
     public function testIfCategoryPrepareDataHasProperFormat()
     {
-        $this->assertEquals($this->category->prepareCategoryData(), json_encode([
+        $this->assertEquals($this->category->getData(), json_encode([
             'id' => '89',
             'name' => 'Shoes',
             'url' => 'https://www.example.com/desktops/monitors',

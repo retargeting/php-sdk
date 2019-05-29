@@ -139,7 +139,7 @@ class EmailTest extends TestCase
      */
     public function test_if_prepare_email_data_has_proper_format()
     {
-        $this->assertEquals($this->email->prepareEmailData(),
+        $this->assertEquals($this->email->getData(),
             json_encode([
                 'email' => 'john.doe@mail.com',
                 'name'  => 'John Doe',

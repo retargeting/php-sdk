@@ -97,6 +97,10 @@ class ProductTest extends TestCase
         $this->assertEquals($this->product->getPrice(), 12);
     }
 
+    /**
+     * Test if product promo price is greater then product price, then promo price needs to be 0
+     * @throws \Exception
+     */
     public function test_when_product_promo_price_is_zero_and_promo_is_greater_than_price()
     {
         $this->product->setPrice(20);
@@ -144,12 +148,12 @@ class ProductTest extends TestCase
             ]
         ]);
 
-        $this->assertEquals($this->product->getCategory(), [
+        $this->assertEquals($this->product->getCategory(), [[
                 "id" => 12,
                 "name" => "Women footwear",
                 "parent" => false,
                 "breadcrumb" => []
-        ]);
+        ]]);
     }
 
     /**
@@ -393,7 +397,7 @@ class ProductTest extends TestCase
                 ]
             ], JSON_PRETTY_PRINT);
 
-        $this->assertEquals($product->prepareProductInformationToJson(), $result);
+        $this->assertEquals($product->getData(), $result);
     }
 }
 
